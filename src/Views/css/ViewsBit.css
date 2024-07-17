@@ -1,0 +1,52 @@
+.bitacoras-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.bitacoras-title {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bitacoras-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.bitacoras-input,
+.bitacoras-textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.bitacoras-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.bitacoras-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bitacoras-button:hover {
+  background-color: #0056b3;
+}
+
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
