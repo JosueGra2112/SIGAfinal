@@ -45,6 +45,7 @@ import CargaAlumnos from './CARGOS/Admin/CargaAlumnos';
 import TablaAlumnos from './CARGOS/Admin/TablaAlm';
 
 //Directivos
+import SesionDic from './CARGOS/Directivos/sesionDic';
 
 //Administrativo
 
@@ -128,6 +129,9 @@ const App = () => {
 
                 <Route element={<ProtectedRoute canActivate={user} />}>
                   <Route path="/SesionS" element={<PageTransition><SesionS /></PageTransition>} />
+                </Route>
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/SesionDic" element={<PageTransition><SesionDic /></PageTransition>} />
                 </Route>
 
                 <Route element={<ProtectedRoute canActivate={user} />}>

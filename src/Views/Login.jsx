@@ -67,7 +67,7 @@ const Login = () => {
             navigate('/SesionS');
           } 
           else if (cargo === 'Directivos') {
-            navigate('/sesion');
+            navigate('/SesionDic');
           } else {
             setErrorLogin(false); // Limpiamos el estado de errorLogin
             showNotification('Autenticación exitosa');
