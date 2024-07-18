@@ -46,12 +46,12 @@ const Expedientes = () => {
       </style>
       {diario ? (
         <div>
-          {diario.map((item, index) => (
+           {diario.map((item, index) => (
             <div key={index} className="diario-entry">
-              
               <p><strong>Asunto:</strong> {item.titulo}</p>
               <p><strong>Descripción:</strong> {item.descripcion}</p>
               <p><strong>Fecha:</strong> {item.fecha}</p>
+              <p><strong>Hora:</strong> {item.thora}</p>
               {index !== diario.length - 1 && <hr />} {/* Agrega una línea divisoria entre entradas */}
             </div>
           ))}

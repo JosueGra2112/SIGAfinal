@@ -7,7 +7,8 @@ const Bitacoras = () => {
     tipoDiario: '',
     titulo: '',
     fecha: '',
-    descripcion: ''
+    descripcion: '',
+    thora: '' // Agregar campo "thora"
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [username, setUsername] = useState('');
@@ -47,7 +48,8 @@ const Bitacoras = () => {
         tipoDiario: '',
         titulo: '',
         fecha: '',
-        descripcion: ''
+        descripcion: '',
+        thora: '' // Limpiar campo "thora"
       });
       setSuccessMessage('Diario creado exitosamente');
     })
@@ -55,8 +57,8 @@ const Bitacoras = () => {
   };
 
   const validateForm = () => {
-    const { tipoDiario, titulo, fecha, descripcion } = nuevaActividad;
-    if (!tipoDiario || !titulo || !fecha || !descripcion) {
+    const { tipoDiario, titulo, fecha, descripcion, thora } = nuevaActividad;
+    if (!tipoDiario || !titulo || !fecha || !descripcion || !thora) {
       alert('Favor de llenar todos los campos para agregar la actividad.');
       return false;
     }
@@ -95,6 +97,14 @@ const Bitacoras = () => {
               type="date"
               name="fecha"
               value={nuevaActividad.fecha}
+              onChange={handleChange}
+              style={styles.input}
+            />
+            <label style={styles.label}>Hora</label>
+            <input
+              type="time"
+              name="thora"
+              value={nuevaActividad.thora}
               onChange={handleChange}
               style={styles.input}
             />

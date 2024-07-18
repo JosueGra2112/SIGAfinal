@@ -5,10 +5,7 @@ const Expedientes = () => {
 
   useEffect(() => {
     // Realizar la solicitud al servicio web para obtener los datos del diario
-    //fetch('http://localhost/WebServices/consultaDiarioBoletin.php')
     fetch('https://sigaemail.host8b.me/consultaDiarioBoletin.php')
-
-
       .then(response => response.json())
       .then(data => {
         console.log('Datos del diario:', data);
@@ -49,10 +46,10 @@ const Expedientes = () => {
         <div>
           {diario.map((item, index) => (
             <div key={index} className="diario-entry">
-              
               <p><strong>Asunto:</strong> {item.titulo}</p>
               <p><strong>Descripción:</strong> {item.descripcion}</p>
               <p><strong>Fecha:</strong> {item.fecha}</p>
+              <p><strong>Hora:</strong> {item.thora}</p>
               {index !== diario.length - 1 && <hr />} {/* Agrega una línea divisoria entre entradas */}
             </div>
           ))}
