@@ -55,7 +55,7 @@ const Login = () => {
 
           if (cargo === 'doc') {
           } else if (cargo === 'Administrativo') {
-            navigate('/sesionAd');
+            navigate('/SesionAdmi');
           } 
           else if (cargo === 'Administrador') {
             navigate('/SesionAdmin');

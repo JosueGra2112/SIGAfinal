@@ -9,7 +9,7 @@ const MenuAd = () => {
       <ul className="menu-inicio-list">
       <li><Link to="../sesionS">Inicio</Link></li>  
         <li><Link to="../ExpS">Expedientes</Link></li>
-        <li><Link to="#">Diario de Eventos</Link></li>
+        <li><Link to="../DiariEventSec">Diario de Eventos</Link></li>
       </ul>
     </div>
   );

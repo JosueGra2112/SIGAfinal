@@ -8,10 +8,10 @@ const MenuAd = () => {
     <div className="menu-inicio-container">
       <ul className="menu-inicio-list">
       <li><Link to="../sesionDic">Inicio</Link></li>  
-      <li><Link to="#">Diario de Eventos</Link></li>
-        <li><Link to="#">Expedientes</Link></li>
-        <li><Link to="#">Carga Alumnos</Link></li>
-        <li><Link to="#">Alumnos</Link></li>
+        <li><Link to="../DiaEventDir">Diario de Eventos</Link></li>
+        <li><Link to="../TablaExpDic">Expedientes</Link></li>
+        <li><Link to="../CargaAlumnosDir">Carga Alumnos</Link></li>
+        <li><Link to="../TablaAlumnosDie">Alumnos</Link></li>
       </ul>
     </div>
   );

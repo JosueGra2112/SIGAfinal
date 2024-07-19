@@ -7,12 +7,11 @@ const MenuAd = () => {
   return (
     <div className="menu-inicio-container">
       <ul className="menu-inicio-list">
-      <li><Link to="../SesionAdmin">Inicio</Link></li>  
-        <li><Link to="../DiaEvent">Diario de Eventos</Link></li>
-        <li><Link to="../UserControl">Perfiles</Link></li>
-        <li><Link to="../CargaAlumnos">Carga Alumnos</Link></li>
-        <li><Link to="../TablaAlumnos">Alumnos</Link></li>
-        <li><Link to="../TablaHistoral">Historial de Expediente</Link></li>
+      <li><Link to="../SesionAdmi">Inicio</Link></li>  
+        <li><Link to="../DiaEventAdmi">Diario de Eventos</Link></li>
+        <li><Link to="../TblExpS">Expedientes</Link></li>
+        <li><Link to="../CargaAlumnosAdmi">Carga Alumnos</Link></li>
+        <li><Link to="../TablaAlumnosAdmu">Alumnos</Link></li>
       </ul>
     </div>
   );

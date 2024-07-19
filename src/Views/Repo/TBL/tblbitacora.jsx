@@ -7,14 +7,13 @@ const Expedientes = () => {
     // Realizar la solicitud al servicio web para obtener los datos del diario
     //fetch('http://localhost/WebServices/consultaDiario.php')
     fetch('https://sigaemail.host8b.me/consultaDiario.php')
-    
-      .then(response => response.json())
-      .then(data => {
-        console.log('Datos del diario:', data);
-        setDiario(data); // Almacena los datos del diario en el estado
-      })
-      .catch(error => console.error('Error al obtener los datos del diario:', error));
-  }, []);
+    .then(response => response.json())
+    .then(data => {
+      console.log('Datos del diario:', data);
+      setDiario(data); // Almacena los datos del diario en el estado
+    })
+    .catch(error => console.error('Error al obtener los datos del diario:', error));
+}, []);
 
   return (
     <div className="diario-container">
@@ -46,7 +45,7 @@ const Expedientes = () => {
       </style>
       {diario ? (
         <div>
-           {diario.map((item, index) => (
+          {diario.map((item, index) => (
             <div key={index} className="diario-entry">
               <p><strong>Asunto:</strong> {item.titulo}</p>
               <p><strong>Descripción:</strong> {item.descripcion}</p>

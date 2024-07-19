@@ -43,11 +43,25 @@ import DiaEvent from './CARGOS/Admin/DiarioEvent'
 import UserControl from './CARGOS/Admin/UserAcceso';
 import CargaAlumnos from './CARGOS/Admin/CargaAlumnos';
 import TablaAlumnos from './CARGOS/Admin/TablaAlm';
+import TablaHistoral from './CARGOS/Admin/TablaHis';
 
 //Directivos
 import SesionDic from './CARGOS/Directivos/sesionDic';
+import DiaEventDir from './CARGOS/Directivos/DiarioEventDir';
+import ExpedientesDir from './CARGOS/Directivos/expedientesDir';
+import CargaAlumnosDir from './CARGOS/Directivos/CargaAlumnosDir';
+import AlumnosDir from './CARGOS/Directivos/AlumnosDir';
+import TablaExpDic from './CARGOS/Directivos/TablaExpDic';
+import TablaAlumnosDie from './CARGOS/Directivos/TablaAlmDic';
 
 //Administrativo
+import SesionAdmi from './CARGOS/Administrativos/sesionAdministrativo';
+import DiaEventAdmi from './CARGOS/Administrativos/DiarioEventAdm';
+import CargaAlumnosAdmi from './CARGOS/Administrativos/CargaAlumnosAdm';
+import TablaAlumnosAdmu from './CARGOS/Directivos/TablaAlmDic';
+import TblExpS from './CARGOS/Administrativos/TablaExpAdmi';
+import ExpedientesDocAdmi from './CARGOS/Administrativos/ExpedientesDocV';
+
 
 //Docente
 import SesionD from './CARGOS/Docentes/sesionD';
@@ -57,6 +71,7 @@ import Acti from './CARGOS/Docentes/Acti';
 import SesionS from './CARGOS/Secretario/sesionS';
 import ExpS from './CARGOS/Secretario/TablaExpS';
 import ExpedientesS from './CARGOS/Secretario/expedientesS';
+import DiariEventSec from './CARGOS/Secretario/DiarioEventSec';
 
 
 import { useLocalStorage } from 'react-use';
@@ -138,13 +153,29 @@ const App = () => {
                   <Route path="/ExpS" element={<PageTransition><ExpS /></PageTransition>} />
                 </Route>
 
-                
-                
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/TblExpS" element={<PageTransition><TblExpS /></PageTransition>} />
+                </Route>
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/ExpedientesDocAdmi" element={<PageTransition><ExpedientesDocAdmi /></PageTransition>} />
+                </Route>                
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/TablaExpDic" element={<PageTransition><TablaExpDic /></PageTransition>} />
+                </Route>  
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/TablaHistoral" element={<PageTransition><TablaHistoral /></PageTransition>} />
+                </Route>  
+
 
                 <Route element={<ProtectedRoute canActivate={user} />}>
                   <Route path="/sesionAd" element={<PageTransition><SesionAd /></PageTransition>} />
                 </Route>
 
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/SesionAdmi" element={<PageTransition><SesionAdmi /></PageTransition>} />
+                </Route>
 
                 
                 <Route element={<ProtectedRoute canActivate={user} />}>
@@ -156,10 +187,49 @@ const App = () => {
                 </Route>
 
                 <Route element={<ProtectedRoute canActivate={user} />}>
-                  <Route path="/Acti" element={<PageTransition><Acti /></PageTransition>} />
+                  <Route path="/DiaEventDir" element={<PageTransition><DiaEventDir /></PageTransition>} />
                 </Route>
 
 
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/ExpedientesDir" element={<PageTransition><ExpedientesDir /></PageTransition>} />
+                </Route>
+
+                
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/CargaAlumnosDir" element={<PageTransition><CargaAlumnosDir /></PageTransition>} />
+                </Route>
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/AlumnosDir" element={<PageTransition><AlumnosDir /></PageTransition>} />
+                </Route>
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/DiariEventSec" element={<PageTransition><DiariEventSec /></PageTransition>} />
+                </Route>
+                
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/Acti" element={<PageTransition><Acti /></PageTransition>} />
+                </Route>
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/SesionAdmi" element={<PageTransition><SesionAdmi /></PageTransition>} />
+                </Route>
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/DiaEventAdmi" element={<PageTransition><DiaEventAdmi /></PageTransition>} />
+                </Route>
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/CargaAlumnosAdmi" element={<PageTransition><CargaAlumnosAdmi /></PageTransition>} />
+                </Route>
+                
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/TablaAlumnosAdmu" element={<PageTransition><TablaAlumnosAdmu /></PageTransition>} />
+                </Route>
+                
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/TablaAlumnosDie" element={<PageTransition><TablaAlumnosDie /></PageTransition>} />
+                </Route>
 
                 
 
