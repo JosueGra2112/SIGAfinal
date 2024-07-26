@@ -135,10 +135,13 @@ const App = () => {
                 <Route path="/Boletin" element={<PageTransition><Boletin /></PageTransition>} />
                 <Route path="/Calendario" element={<PageTransition><Calendario /></PageTransition>} />
                 <Route path="/AcercaDe" element={<PageTransition><AcercaDe /></PageTransition>} />
-
+                <Route path="/Rest" element={<PageTransition><Rest /></PageTransition>} />
                 <Route path="/ValidarUsuario" element={<ValidarUsuario />} />
                 <Route path="/ResponderPregunta/:usuario" element={<ResponderPregunta />} />
                 <Route path="/RestaurarContrasena/:usuario" element={<RestaurarContraseña />}/>
+
+
+
                 {/*INICIA - RUTAS PROTEGIDAS */}
                 
 
@@ -285,11 +288,13 @@ const App = () => {
                 </Route>
 
 
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/CargaAct" element={<PageTransition><CargaAct /></PageTransition>} />
+                </Route>
 
-                <Route path="/CargaAct" element={<PageTransition><CargaAct /></PageTransition>} />
-
-                <Route path="/DownAct" element={<PageTransition><DownAct /></PageTransition>} />
-
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/DownAct" element={<PageTransition><DownAct /></PageTransition>} />
+                </Route>
 
 
                 {/*FIN - 
@@ -305,18 +310,27 @@ const App = () => {
                  // <Route path="/CargaAlumnos" element={<PageTransition><CargaAlumnos /></PageTransition>} />
                 </Route>
 
-                <Route path="/Rest" element={<PageTransition><Rest /></PageTransition>} />
+                
 
                 <Route element={<ProtectedRoute canActivate={user} />}>
                   <Route path="/MenuAd" element={<PageTransition><MenuAd /></PageTransition>} />
                 </Route>
-                {/*FIN - RUTAS PROTEGIDAS */}
-                <Route path="/expedientes" element={<PageTransition><Expedientes /></PageTransition>} />
 
-                {/*FIN - RUTAS PROTEGIDAS */}
-                <Route path="/expedientesS" element={<PageTransition><ExpedientesS /></PageTransition>} />
 
-                <Route path="/UserControl" element={<PageTransition><UserControl /></PageTransition>} />
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/expedientes" element={<PageTransition><Expedientes /></PageTransition>} />
+                </Route>
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/expedientesS" element={<PageTransition><ExpedientesS /></PageTransition>} />
+                </Route>
+                
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/UserControl" element={<PageTransition><UserControl /></PageTransition>} />
+                </Route>
+                
+
 
                 <Route path="/ViewsBit" element={<PageTransition><ViewsBit /></PageTransition>} />
 
