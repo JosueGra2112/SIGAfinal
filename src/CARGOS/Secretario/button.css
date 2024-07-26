@@ -1,0 +1,58 @@
+/* Botones */
+.register-button,
+.search-button,
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.register-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.search-button {
+  background-color: #008CBA;
+  color: white;
+}
+
+.action-button {
+  font-size: 14px;
+  margin: 5px;
+}
+
+.red-button {
+  background-color: red;
+  color: black;
+}
+
+.yellow-button {
+  background-color: yellow;
+  color: black;
+}
+
+/* Tamaño de las imágenes */
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* Grupos de botones */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.action-button-group {
+  display: flex;
+  justify-content: center;
+}

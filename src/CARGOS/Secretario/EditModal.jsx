@@ -1,7 +1,6 @@
 // src/Components/EditModal.jsx
 import React, { useState, useEffect } from 'react';
 import Modal from './modalAct';
-import './modalAct.css';
 
 const EditModal = ({ isOpen, onClose, expediente, onSubmit }) => {
   const [Clave, setClave] = useState(expediente ? expediente.Clave : '');

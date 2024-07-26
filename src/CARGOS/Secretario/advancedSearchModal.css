@@ -1,71 +1,87 @@
-/* src/Components/advancedSearchModal.css */
-.modal-advanced {
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.advanced-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Estilos para el contenido del modal */
+.advanced-modal {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-width: 600px;
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative; /* Asegura que el botón de cerrar se posicione correctamente */
+}
+
+/* Animación para el modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  
-  .modal-content-advanced {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 10px;
-    position: relative;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .close-advanced {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close-advanced:hover,
-  .close-advanced:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .form-row-advanced {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .form-group-advanced {
-    flex: 1;
-    min-width: 120px;
-    margin-right: 10px;
-  }
-  
-  .form-group-advanced label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group-advanced select,
-  .form-group-advanced input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .form-buttons-advanced {
-    display: flex;
-    justify-content: space-between;
-  }
-  
+}
+
+/* Estilos para el botón de cerrar */
+.advanced-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Estilos para el formulario */
+.advanced-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.advanced-form label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.advanced-form input,
+.advanced-form select {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.advanced-form button {
+  background-color: #23259d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.advanced-form button:hover {
+  background-color: #168ce7;
+}
+
+.advanced-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}

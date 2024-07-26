@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import '../css/table.css';
 import '../css/search.css';
+import './button.css';
 import pdfimg from './PDF.png';
+import buscarImg from './buscador.png';
+import actualizarImg from './actualizar.png';
+import solicitarImg from './solicitar.png';
 import ExpedienteRe from './RegistroExpS';
-import Modal from './modalAct';
+import AdvancedSearchModal from './AdvancedSearchModal';
 import EditModal from './EditModal';
 import SolicitarModal from './RequestModal';
 
 const Expedientes = () => {
   const [expedientes, setExpedientes] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchField, setSearchField] = useState('Todos');
   const [filteredExpedientes, setFilteredExpedientes] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedExpediente, setSelectedExpediente] = useState(null);
@@ -27,19 +29,6 @@ const Expedientes = () => {
       })
       .catch(error => console.error('Error al obtener los expedientes de la tabla:', error));
   }, []);
-
-  const handleSearch = () => {
-    const filtered = expedientes.filter(expediente => {
-      if (searchField === 'Todos') {
-        return Object.values(expediente).some(value =>
-          value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      } else {
-        return expediente[searchField].toString().toLowerCase().includes(searchTerm.toLowerCase());
-      }
-    });
-    setFilteredExpedientes(filtered);
-  };
 
   const handleOpenAdvancedSearch = () => {
     setShowModal(true);
@@ -68,13 +57,14 @@ const Expedientes = () => {
     setShowSolicitarModal(false);
   };
 
-  const handleAdvancedSearchSubmit = ({ cicloEsc, grado, grupo, exp }) => {
+  const handleAdvancedSearchSubmit = ({ nombre, cicloEsc, grado, grupo, exp }) => {
     const filtered = expedientes.filter(expediente => {
       return (
-        expediente.cicloEsc.includes(cicloEsc) &&
-        expediente.Grado.includes(grado) &&
-        expediente.Grupo.includes(grupo) &&
-        expediente.Expediente.includes(exp)
+        (!nombre || expediente.Alumno.toLowerCase().includes(nombre.toLowerCase())) &&
+        (!cicloEsc || expediente.cicloEsc.includes(cicloEsc)) &&
+        (!grado || expediente.Grado.includes(grado)) &&
+        (!grupo || expediente.Grupo.includes(grupo)) &&
+        (!exp || expediente.Expediente.includes(exp))
       );
     });
     setFilteredExpedientes(filtered);
@@ -89,23 +79,23 @@ const Expedientes = () => {
       },
       body: JSON.stringify(updatedExpediente)
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data.message) {
-        const updatedExpedientes = expedientes.map(exp => 
-          exp.idexp === updatedExpediente.idexp ? updatedExpediente : exp
-        );
-        setExpedientes(updatedExpedientes);
-        setFilteredExpedientes(updatedExpedientes);
-        handleCloseEditModal();
-      } else {
-        console.error(data.error);
-        if (data.missing_fields) {
-          setMissingFields(data.missing_fields);
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          const updatedExpedientes = expedientes.map(exp => 
+            exp.idexp === updatedExpediente.idexp ? updatedExpediente : exp
+          );
+          setExpedientes(updatedExpedientes);
+          setFilteredExpedientes(updatedExpedientes);
+          handleCloseEditModal();
+        } else {
+          console.error(data.error);
+          if (data.missing_fields) {
+            setMissingFields(data.missing_fields);
+          }
         }
-      }
-    })
-    .catch(error => console.error('Error al actualizar el expediente:', error));
+      })
+      .catch(error => console.error('Error al actualizar el expediente:', error));
   };
 
   const handleSolicitarSubmit = (solicitudData) => {
@@ -116,43 +106,27 @@ const Expedientes = () => {
       },
       body: JSON.stringify(solicitudData)
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        handleCloseSolicitarModal();
-      } else {
-        console.error(data.message);
-      }
-    })
-    .catch(error => console.error('Error al registrar la solicitud:', error));
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          handleCloseSolicitarModal();
+        } else {
+          console.error(data.message);
+        }
+      })
+      .catch(error => console.error('Error al registrar la solicitud:', error));
   };
 
   return (
     <div>
-      <ExpedienteRe />
-
-      <div>
-        <h4>Buscador</h4>
-        <select value={searchField} onChange={(e) => setSearchField(e.target.value)}>
-          <option value="Todos">Todos los datos</option>
-          <option value="Alumno">Nombre del alumno</option>
-          <option value="Clave">Clave</option>
-          <option value="cicloEsc">Ciclo Escolar</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Término de búsqueda..."
-          value={searchTerm}
-          onChange={(e) => { 
-            setSearchTerm(e.target.value);
-            handleSearch();
-          }}
-        />
-        <br />
-        <br />
-        <button onClick={handleOpenAdvancedSearch}>Búsqueda Avanzada</button>
-        <Modal isOpen={showModal} onClose={handleCloseModal} onSubmit={handleAdvancedSearchSubmit} />
+      <div className="button-group">
+        <ExpedienteRe />
+        <button onClick={handleOpenAdvancedSearch} className="search-button">
+          <img src={buscarImg} alt="buscar" className="icon" />
+          Buscador
+        </button>
       </div>
+      <AdvancedSearchModal isOpen={showModal} onClose={handleCloseModal} onSubmit={handleAdvancedSearchSubmit} />
       {filteredExpedientes.length === 0 && <h1>No se encontraron resultados</h1>}
       <table>
         <thead>
@@ -188,9 +162,15 @@ const Expedientes = () => {
                 </center>
               </td>
               <td>
-                <p>
-                  <button onClick={() => handleOpenSolicitarModal(expediente)} style={{ backgroundColor: 'blue', color: 'white', border: 'none', padding: '5px', cursor: 'pointer' }}>Solicitar</button>
-                  <button onClick={() => handleOpenEditModal(expediente)} style={{ backgroundColor: 'yellow', color: 'black', border: 'none', padding: '5px', cursor: 'pointer' }}>Actualizar</button>
+                <p className="action-button-group">
+                  <button onClick={() => handleOpenSolicitarModal(expediente)} className="action-button red-button">
+                    <img src={solicitarImg} alt="solicitar" className="icon" />
+                    Solicitar
+                  </button>
+                  <button onClick={() => handleOpenEditModal(expediente)} className="action-button yellow-button">
+                    <img src={actualizarImg} alt="actualizar" className="icon" />
+                    Actualizar
+                  </button>
                 </p>
               </td>
             </tr>

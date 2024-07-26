@@ -24,7 +24,7 @@ const RestaurarContraseña = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost/WebServices/CambiarContrasena.php', {
+      const response = await fetch('https://sigaemail.host8b.me/CambiarContrasena.php', {
         
         method: 'POST',
         headers: {

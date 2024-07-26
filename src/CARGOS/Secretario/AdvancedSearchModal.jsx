@@ -1,78 +1,62 @@
-// src/Components/AdvancedSearchModal.jsx
 import React, { useState } from 'react';
-import './advancedSearchModal.css';
+import './advancedSearchModal.css'; // Importa el archivo CSS
 
 const AdvancedSearchModal = ({ isOpen, onClose, onSubmit }) => {
   const [cicloEsc, setCicloEsc] = useState('');
   const [grado, setGrado] = useState('');
   const [grupo, setGrupo] = useState('');
   const [exp, setExp] = useState('');
-
-  const Grado = ['1', '2', '3'];
-  const Grupo = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'];
-  const Exp = ['BOLETA', 'CERTIFICADO', 'CONSTANCIA'];
+  const [nombre, setNombre] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ cicloEsc, grado, grupo, exp });
-    onClose();
+    onSubmit({ nombre, cicloEsc, grado, grupo, exp });
   };
 
   return (
     isOpen && (
-      <div className="modal-advanced">
-        <div className="modal-content-advanced">
-          <span className="close-advanced" onClick={onClose}>
-            &times;
-          </span>
-          <h2>Búsqueda Avanzada</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-row-advanced">
-              <div className="form-group-advanced">
-                <label>Ciclo Escolar: </label>
-                <input type="text" value={cicloEsc} onChange={(e) => setCicloEsc(e.target.value)} />
-              </div>
-              <div className="form-group-advanced">
-                <label>Grado: </label>
-                <select value={grado} onChange={(e) => setGrado(e.target.value)}>
-                  <option value="">Seleccione el Grado</option>
-                  {Grado.map((c, index) => (
-                    <option key={index} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="form-row-advanced">
-              <div className="form-group-advanced">
-                <label>Grupo: </label>
-                <select value={grupo} onChange={(e) => setGrupo(e.target.value)}>
-                  <option value="">Seleccione el Grupo</option>
-                  {Grupo.map((c, index) => (
-                    <option key={index} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="form-group-advanced">
-                <label>Expediente: </label>
-                <select value={exp} onChange={(e) => setExp(e.target.value)}>
-                  <option value="">Seleccione el Expediente</option>
-                  {Exp.map((c, index) => (
-                    <option key={index} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="form-buttons-advanced">
-              <button type="submit" className="btn btn-primary">Buscar</button>
-              <button type="button" className="btn btn-secondary" onClick={onClose}>Cancelar</button>
-            </div>
-          </form>
+      <div className="advanced-modal-overlay">
+        <div className="advanced-modal">
+          <div className="advanced-modal-content">
+            <span className="advanced-close" onClick={onClose}>
+              &times;
+            </span>
+            <h2>Búsqueda Avanzada</h2>
+            <form onSubmit={handleSubmit} className="advanced-form">
+              <label>Nombre del Alumno: </label>
+              <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+              <label>Ciclo Escolar: </label>
+              <input type="text" value={cicloEsc} onChange={(e) => setCicloEsc(e.target.value)} />
+              <label>Grado: </label>
+              <select value={grado} onChange={(e) => setGrado(e.target.value)}>
+                <option value="">Seleccione el Grado</option>
+                {[1, 2, 3].map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              <label>Grupo: </label>
+              <select value={grupo} onChange={(e) => setGrupo(e.target.value)}>
+                <option value="">Seleccione el Grupo</option>
+                {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'].map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              <label>Expediente: </label>
+              <select value={exp} onChange={(e) => setExp(e.target.value)}>
+                <option value="">Seleccione el Expediente</option>
+                {['BOLETA', 'CERTIFICADO', 'CONSTANCIA'].map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              <button type="submit">Buscar</button>
+            </form>
+          </div>
         </div>
       </div>
     )

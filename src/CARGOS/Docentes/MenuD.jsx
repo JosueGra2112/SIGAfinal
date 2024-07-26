@@ -9,7 +9,6 @@ const MenuAd = () => {
       <ul className="menu-inicio-list">
       <li><Link to="../sesionD">Inicio</Link></li>  
         <li><Link to="../Acti">Actividades</Link></li>
-        <li><Link to="#">Cargar Calificaciones</Link></li>
       </ul>
     </div>
   );

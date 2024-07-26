@@ -127,10 +127,9 @@ const App = () => {
 
                 <Route path="/ValidarUsuario" element={<ValidarUsuario />} />
                 <Route path="/ResponderPregunta/:usuario" element={<ResponderPregunta />} />
+                <Route path="/RestaurarContrasena/:usuario" element={<RestaurarContraseña />}/>
                 {/*INICIA - RUTAS PROTEGIDAS */}
-                <Route element={<ProtectedRoute />}>
-                  <Route path="/RestaurarContrasena/:usuario" element={<PageTransition><RestaurarContraseña /></PageTransition>} />
-                </Route>
+                
 
                 <Route element={<ProtectedRoute canActivate={user} />}>
                   <Route path="/sesion" element={<PageTransition><Sesion /></PageTransition>} />

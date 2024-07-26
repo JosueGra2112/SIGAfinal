@@ -66,7 +66,9 @@ const Registro = () => {
     // window.location.href = politicasPDF;
   };
 
-  const cargos = ['Administrador','Directivos', 'Administrativo', 'Docente', 'Secretario'];
+  const cargos = ['Administrador','Directivos','Docente','Administrativo', 'Secretario'];
+  // 'Docente',
+  
 
   const [errorMessages, setErrorMessages] = useState({
     nombre: '',

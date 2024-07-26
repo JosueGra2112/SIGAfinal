@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './css/Login.css';
@@ -50,8 +51,11 @@ const Login = () => {
       .then(data => {
         if (data.success) {
           //Almacena las credenciales al iniciar sesion
-          localStorage.setItem('user', JSON.stringify(data));
-          localStorage.setItem('username', username);
+          localStorage.setItem('user', JSON.stringify(data.data[0].nombre));
+          //localStorage.setItem('username', username);
+
+          localStorage.setItem('idUser',data.data[0].iduser)
+          //localStorage.setItem('data', JSON.stringify(data.data));
 
           if (cargo === 'doc') {
           } else if (cargo === 'Administrativo') {
