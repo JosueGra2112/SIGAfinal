@@ -1,0 +1,53 @@
+.diario-container {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    background-color: #f2f2f2; /* Fondo gris claro */
+  }
+  
+  .diario-entry {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .diario-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .diario-description {
+    margin-top: 10px;
+    color: #555;
+  }
+  
+  .diario-date, .diario-time {
+    margin-top: 10px;
+    color: #777;
+  }
+  
+  .diario-divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+  }
+  
+  .delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .delete-button:hover {
+    background-color: darkred;
+  }
+  

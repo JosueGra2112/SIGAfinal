@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Modal from './modalAct';
-import './solicitarModal.css'; // Importa el nuevo archivo CSS
+import '../css/solicitarModal.css'; // Importa el nuevo archivo CSS
 
 const SolicitarModal = ({ isOpen, onClose, expediente, onSubmit }) => {
   const [nombreResponsable, setNombreResponsable] = useState('');
   const [nombreSolicitante, setNombreSolicitante] = useState('');
   const [motivo, setMotivo] = useState('');
+  const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState(''); // Estado para el mensaje de éxito
 
   useEffect(() => {
@@ -16,8 +17,25 @@ const SolicitarModal = ({ isOpen, onClose, expediente, onSubmit }) => {
     }
   }, [expediente]);
 
+  const validateForm = () => {
+    const newErrors = {};
+    const namePattern = /^[A-Za-z\s]+$/;
+
+    if (!nombreResponsable) newErrors.nombreResponsable = 'El nombre del responsable es requerido';
+    if (nombreResponsable && !namePattern.test(nombreResponsable)) newErrors.nombreResponsable = 'El nombre solo debe contener letras';
+    if (!nombreSolicitante) newErrors.nombreSolicitante = 'El nombre del solicitante es requerido';
+    if (!motivo) newErrors.motivo = 'El motivo de la solicitud es requerido';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
+
     const solicitudData = {
       nombre_responsable: nombreResponsable,
       nombre_solicitante: nombreSolicitante,
@@ -57,6 +75,7 @@ const SolicitarModal = ({ isOpen, onClose, expediente, onSubmit }) => {
                   onChange={(e) => setNombreResponsable(e.target.value)}
                   required
                 />
+                {errors.nombreResponsable && <p className="error">{errors.nombreResponsable}</p>}
               </div>
             </div>
             <div className="solicitar-form-row">
@@ -69,6 +88,7 @@ const SolicitarModal = ({ isOpen, onClose, expediente, onSubmit }) => {
                   onChange={(e) => setNombreSolicitante(e.target.value)}
                   required
                 />
+                {errors.nombreSolicitante && <p className="error">{errors.nombreSolicitante}</p>}
               </div>
             </div>
             <div className="solicitar-form-row">
@@ -81,6 +101,7 @@ const SolicitarModal = ({ isOpen, onClose, expediente, onSubmit }) => {
                   onChange={(e) => setMotivo(e.target.value)}
                   required
                 />
+                {errors.motivo && <p className="error">{errors.motivo}</p>}
               </div>
             </div>
             <div className="solicitar-form-row">

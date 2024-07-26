@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from './Header';
 import './css/Bitacora.css'
-import { Link } from 'react-router-dom';
-import regresar from '../IMG/Regresar.webp';
 import Breadcrumbs from './Breadcrumbs'
 
 const AcercaDe = () => 
@@ -12,9 +10,7 @@ const AcercaDe = () =>
         <Header />
         <Breadcrumbs />
         <br />
-        <Link to="/" className="nav-linkimg" style={{ marginLeft: '10px', marginTop: '10%' }}>
-  <img src={regresar} alt="regresar" style={{ maxWidth: '5%' }} />
-</Link>
+
         <h2 style={{ textAlign: 'center' ,color:'black',fontFamily:'sans-serif',fontSize:'30px'}}>Planeacion Estrategica</h2>
           <div className="tarjetas4">
           

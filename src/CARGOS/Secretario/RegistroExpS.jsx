@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Modal from './modal'; // Asegúrate de importar el componente Modal desde el archivo correcto
-import expedienteImg from './expediente.png';
-import './button.css'
-import './modalAct.css'
+import expedienteImg from '../IMG/expediente.png';
+import '../css/button.css'
+import '../css/modalAct.css'
 
 const RegistroExpediente = ({ onSubmit }) => {
   const [showModal, setShowModal] = useState(false);

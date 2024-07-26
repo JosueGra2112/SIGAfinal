@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import '../css/table.css';
 import '../css/search.css';
-import './button.css';
+import '../css/button.css'
 import pdfimg from './PDF.png';
-import buscarImg from './buscador.png';
-import actualizarImg from './actualizar.png';
-import solicitarImg from './solicitar.png';
+import buscarImg from '../IMG/buscador.png';
+import actualizarImg from '../IMG/actualizar.png';
+import refrescarImg from '../IMG/refrescar.png'; // Importa la imagen de refrescar
+import solicitarImg from '../IMG/solicitar.png';
 import ExpedienteRe from './RegistroExpS';
 import AdvancedSearchModal from './AdvancedSearchModal';
 import EditModal from './EditModal';
 import SolicitarModal from './RequestModal';
+
 
 const Expedientes = () => {
   const [expedientes, setExpedientes] = useState([]);
@@ -20,7 +22,7 @@ const Expedientes = () => {
   const [showSolicitarModal, setShowSolicitarModal] = useState(false);
   const [missingFields, setMissingFields] = useState([]);
 
-  useEffect(() => {
+  const fetchExpedientes = () => {
     fetch('https://sigaemail.host8b.me/expedientes.php')
       .then(response => response.json())
       .then(data => {
@@ -28,6 +30,10 @@ const Expedientes = () => {
         setFilteredExpedientes(data);
       })
       .catch(error => console.error('Error al obtener los expedientes de la tabla:', error));
+  };
+
+  useEffect(() => {
+    fetchExpedientes();
   }, []);
 
   const handleOpenAdvancedSearch = () => {
@@ -88,6 +94,7 @@ const Expedientes = () => {
           setExpedientes(updatedExpedientes);
           setFilteredExpedientes(updatedExpedientes);
           handleCloseEditModal();
+          fetchExpedientes(); // Refrescar la tabla después de actualizar los datos
         } else {
           console.error(data.error);
           if (data.missing_fields) {
@@ -110,11 +117,16 @@ const Expedientes = () => {
       .then(data => {
         if (data.success) {
           handleCloseSolicitarModal();
+          fetchExpedientes(); // Refrescar la tabla después de registrar la solicitud
         } else {
           console.error(data.message);
         }
       })
       .catch(error => console.error('Error al registrar la solicitud:', error));
+  };
+
+  const handleRefresh = () => {
+    fetchExpedientes(); // Refresca los datos de la tabla
   };
 
   return (
@@ -124,6 +136,10 @@ const Expedientes = () => {
         <button onClick={handleOpenAdvancedSearch} className="search-button">
           <img src={buscarImg} alt="buscar" className="icon" />
           Buscador
+        </button>
+        <button onClick={handleRefresh} className="refresh-button">
+          <img src={refrescarImg} alt="refrescar" className="icon" />
+          Refrescar
         </button>
       </div>
       <AdvancedSearchModal isOpen={showModal} onClose={handleCloseModal} onSubmit={handleAdvancedSearchSubmit} />

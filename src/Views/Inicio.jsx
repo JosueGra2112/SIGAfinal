@@ -6,13 +6,13 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import lup from '../IMG/pclup.png';
+import lup from '../IMG/SigaLogo.png';
 import SIGATEXT from '../IMG/SIGATEXT.png';
 import SIGA from '../IMG/SIGA.png';
 
-import IM1 from '../IMGCAR/IM1.jpeg';
-import IM2 from '../IMGCAR/IM2.jpg';
-import IM3 from '../IMGCAR/IM3.webp';
+import IM1 from '../IMGCAR/IMG4.png';
+import IM2 from '../IMGCAR/IMG2.png';
+import IM3 from '../IMGCAR/IMG3.png';
 
 import calendarioImage from '../IMG/calendario.png';
 import bitacoraImage from '../IMG/bitacora.png';
@@ -86,7 +86,7 @@ const Inicio = () => {
 
       <center>
         <main className="App-main" style={{ alignItems: 'center' }}>
-          <h1>Bienvenido</h1>
+
         </main>
       </center>
       <center>

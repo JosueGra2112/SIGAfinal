@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './modalRegistro.css'; // Importa el archivo CSS específico para el modal de registro
+import '../css/modalRegistro.css'; // Importa el archivo CSS específico para el modal de registro
 
 const Modal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({

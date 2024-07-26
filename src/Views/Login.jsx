@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './css/Login.css';
-import './css/alerts.css'
-import Loginim from '../IMG/Login.png';
+import './css/alerts.css';
+import Loginim from '../IMG/userv.png';
 import Header from './Header';
-import Breadcrumbs from './Breadcrumbs'
+import Breadcrumbs from './Breadcrumbs';
 
 const Login = () => {
   const [cargo, setCargo] = useState('');
@@ -50,27 +49,21 @@ const Login = () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          //Almacena las credenciales al iniciar sesion
-          localStorage.setItem('user', JSON.stringify(data.data[0].nombre));
-          //localStorage.setItem('username', username);
+          // Almacena el nombre completo del usuario en el localStorage
+          const fullName = `${data.data[0].nombre} ${data.data[0].ap_paterno} ${data.data[0].ap_materno}`;
+          localStorage.setItem('user', JSON.stringify(fullName));
 
-          localStorage.setItem('idUser',data.data[0].iduser)
-          //localStorage.setItem('data', JSON.stringify(data.data));
+          localStorage.setItem('idUser', data.data[0].iduser);
 
-          if (cargo === 'doc') {
+          if (cargo === 'Administrador') {
+            navigate('/SesionAdmin');
           } else if (cargo === 'Administrativo') {
             navigate('/SesionAdmi');
-          } 
-          else if (cargo === 'Administrador') {
-            navigate('/SesionAdmin');
-          } 
-          else if (cargo === 'Docente') {
+          } else if (cargo === 'Docente') {
             navigate('/SesionD');
-          } 
-          else if (cargo === 'Secretario') {
+          } else if (cargo === 'Secretario') {
             navigate('/SesionS');
-          } 
-          else if (cargo === 'Directivos') {
+          } else if (cargo === 'Directivos') {
             navigate('/SesionDic');
           } else {
             setErrorLogin(false); // Limpiamos el estado de errorLogin
@@ -79,10 +72,8 @@ const Login = () => {
         } else {
           setErrorLogin(true);
           if (data.message === 'Su cuenta aún no está activada. Por favor, póngase en contacto con el administrador para activar su cuenta.') {
-            // Mostrar mensaje específico para cuenta no activada
-            showNotification('Su cuenta aún no está activada. Por favor, póngase en contacto con el administrador para activar su cuenta.');
+            showNotification('ERROR. Por favor, póngase en contacto con el administrador para activar su cuenta.');
           } else {
-            // Mostrar mensaje genérico de error de autenticación
             showNotification('Error de autenticación. Por favor, verifica tus credenciales.');
           }
         }
@@ -91,8 +82,8 @@ const Login = () => {
         console.error('Error al realizar la solicitud de autenticación:', error);
         showNotification('Error al realizar la solicitud de autenticación.');
       });
-    
   };
+
   return (
     <div>
       <Header />
@@ -161,34 +152,34 @@ const Login = () => {
 
           <p className="register-link">¿No tienes cuenta?</p>
           <Link 
-  to="/Registro" 
-  className="nav-linkLog"
-  style={{ transition: 'text-shadow 0.3s ease' }}
-  onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.9)'}
-  onMouseLeave={(e) => e.target.style.textShadow = 'none'}
->
-  Registrarse
-</Link>
+            to="/Registro" 
+            className="nav-linkLog"
+            style={{ transition: 'text-shadow 0.3s ease' }}
+            onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.9)'}
+            onMouseLeave={(e) => e.target.style.textShadow = 'none'}
+          >
+            Registrarse
+          </Link>
           <p className="register-link">¿Olvidaste tu contraseña?</p>
           <Link 
-  to="/ValidarUsuario" 
-  className="nav-linkLog"
-  style={{ transition: 'text-shadow 0.3s ease' }}
-  onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.5)'}
-  onMouseLeave={(e) => e.target.style.textShadow = 'none'}
->
-  Restaurar por Pregunta secreta
-</Link>
-<br />
-<Link 
-  to="/Rest" 
-  className="nav-linkLog"
-  style={{ transition: 'text-shadow 0.3s ease' }}
-  onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.5)'}
-  onMouseLeave={(e) => e.target.style.textShadow = 'none'}
->
-  Restaurar por correo electronico
-</Link>
+            to="/ValidarUsuario" 
+            className="nav-linkLog"
+            style={{ transition: 'text-shadow 0.3s ease' }}
+            onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.5)'}
+            onMouseLeave={(e) => e.target.style.textShadow = 'none'}
+          >
+            Restaurar por Pregunta secreta
+          </Link>
+          <br />
+          <Link 
+            to="/Rest" 
+            className="nav-linkLog"
+            style={{ transition: 'text-shadow 0.3s ease' }}
+            onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.5)'}
+            onMouseLeave={(e) => e.target.style.textShadow = 'none'}
+          >
+            Restaurar por correo electronico
+          </Link>
         </div>
       </div>
       {showAlert && (
@@ -204,4 +195,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;

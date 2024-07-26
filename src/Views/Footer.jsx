@@ -23,7 +23,6 @@ const Footer = () => {
       <div className="footer-section policies">
         <h3>Políticas</h3>
         <p>Políticas de Seguridad</p>
-        <p>Quejas y Sugerencias</p>
       </div>
 
       <div className="footer-section social-media">

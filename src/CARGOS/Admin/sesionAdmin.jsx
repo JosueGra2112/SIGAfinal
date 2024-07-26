@@ -1,4 +1,3 @@
-// src/Views/SesionAdmin.jsx
 import React, { useEffect, useState } from 'react';
 import '../index.css'; // Importa tu archivo de estilos
 import Header from './HeaderSe';
@@ -9,12 +8,12 @@ import BIEN from '../IMG/BIEN.png';
 import Menu from './MenuAd';
 
 const SesionAdmin = () => {
-  const [username, setUsername] = useState('');
+  const [nombreCompleto, setNombreCompleto] = useState('');
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('username');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
-      setUsername(storedUser);
+      setNombreCompleto(storedUser);
     }
   }, []);
 
@@ -23,8 +22,8 @@ const SesionAdmin = () => {
       <Header />
       <Menu />
       <center>
-        <h1>Administrador</h1>
-        <h3>Bienvenido {username}</h3>
+        <h1>ADMINISTRADOR</h1>
+        <h3>Bienvenido Admin. {nombreCompleto}</h3>
       </center>
       <main className="App-main" style={{ display: 'flex', alignItems: 'center' }}>
         <img src={lup} alt="Lup" style={{ alignItems: 'center', maxWidth: '30%', marginLeft: '50px', marginRight: '50px' }} />

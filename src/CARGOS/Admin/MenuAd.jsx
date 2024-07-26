@@ -12,7 +12,7 @@ const MenuAd = () => {
         <li><Link to="../UserControl">Perfiles</Link></li>
         <li><Link to="../CargaAlumnos">Carga Alumnos</Link></li>
         <li><Link to="../TablaAlumnos">Alumnos</Link></li>
-        <li><Link to="../TablaHistoral">Historial de Expediente</Link></li>
+        <li><Link to="../TablaHistoral">Solicitudes de Expediente</Link></li>
       </ul>
     </div>
   );

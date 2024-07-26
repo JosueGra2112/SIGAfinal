@@ -9,7 +9,7 @@ const TablaExp = () => {
 <div>
 <Header />
 <Menu />
-      <center><h1>Historial</h1></center>
+      <center><h1>Solicitudes</h1></center>
       <Expedientes />
     </div>
   );

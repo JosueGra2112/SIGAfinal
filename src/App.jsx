@@ -44,6 +44,8 @@ import UserControl from './CARGOS/Admin/UserAcceso';
 import CargaAlumnos from './CARGOS/Admin/CargaAlumnos';
 import TablaAlumnos from './CARGOS/Admin/TablaAlm';
 import TablaHistoral from './CARGOS/Admin/TablaHis';
+import BitacorasAd from './CARGOS/Admin/BitacorasAd';
+import BoletinAd from './CARGOS/Admin/BoletinAd';
 
 //Directivos
 import SesionDic from './CARGOS/Directivos/sesionDic';
@@ -53,14 +55,21 @@ import CargaAlumnosDir from './CARGOS/Directivos/CargaAlumnosDir';
 import AlumnosDir from './CARGOS/Directivos/AlumnosDir';
 import TablaExpDic from './CARGOS/Directivos/TablaExpDic';
 import TablaAlumnosDie from './CARGOS/Directivos/TablaAlmDic';
+import BitacorasDir from './CARGOS/Directivos/BitacorasDir';
+import BoletinDir from './CARGOS/Directivos/BoletinDir';
+
+
 
 //Administrativo
 import SesionAdmi from './CARGOS/Administrativos/sesionAdministrativo';
 import DiaEventAdmi from './CARGOS/Administrativos/DiarioEventAdm';
 import CargaAlumnosAdmi from './CARGOS/Administrativos/CargaAlumnosAdm';
-import TablaAlumnosAdmu from './CARGOS/Directivos/TablaAlmDic';
+import TablaAlumnosAdmu from './CARGOS/Administrativos/TablaAlmAdmi';
 import TblExpS from './CARGOS/Administrativos/TablaExpAdmi';
 import ExpedientesDocAdmi from './CARGOS/Administrativos/ExpedientesDocV';
+
+import BitacorasAds from './CARGOS/Administrativos/BitacorasAds';
+import BoletinAds from './CARGOS/Administrativos/BoletinAds';
 
 
 //Docente
@@ -72,6 +81,8 @@ import SesionS from './CARGOS/Secretario/sesionS';
 import ExpS from './CARGOS/Secretario/TablaExpS';
 import ExpedientesS from './CARGOS/Secretario/expedientesS';
 import DiariEventSec from './CARGOS/Secretario/DiarioEventSec';
+import BitacorasSec from './CARGOS/Secretario/BitacorasSec';
+import BoletinSec from './CARGOS/Secretario/BoletinSec';
 
 
 import { useLocalStorage } from 'react-use';
@@ -167,6 +178,14 @@ const App = () => {
                   <Route path="/TablaHistoral" element={<PageTransition><TablaHistoral /></PageTransition>} />
                 </Route>  
 
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/BitacorasSec" element={<PageTransition><BitacorasSec /></PageTransition>} />
+                </Route>  
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/BoletinSec" element={<PageTransition><BoletinSec /></PageTransition>} />
+                </Route>  
+                
 
                 <Route element={<ProtectedRoute canActivate={user} />}>
                   <Route path="/sesionAd" element={<PageTransition><SesionAd /></PageTransition>} />
@@ -230,11 +249,31 @@ const App = () => {
                   <Route path="/TablaAlumnosDie" element={<PageTransition><TablaAlumnosDie /></PageTransition>} />
                 </Route>
 
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/BitacorasAd" element={<PageTransition><BitacorasAd /></PageTransition>} />
+                </Route>  
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/BoletinAd" element={<PageTransition><BoletinAd /></PageTransition>} />
+                </Route>  
+
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/BitacorasDir" element={<PageTransition><BitacorasDir /></PageTransition>} />
+                </Route>  
+
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/BoletinDir" element={<PageTransition><BoletinDir /></PageTransition>} />
+                </Route>  
                 
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/BitacorasAds" element={<PageTransition><BitacorasAds /></PageTransition>} />
+                </Route>  
 
-
-
-
+                <Route element={<ProtectedRoute canActivate={user} />}>
+                  <Route path="/BoletinAds" element={<PageTransition><BoletinAds /></PageTransition>} />
+                </Route>  
+                
 
                 <Route element={<ProtectedRoute canActivate={user} />}>
                   <Route path="/TablaExp" element={<PageTransition><TableExp /></PageTransition>} />

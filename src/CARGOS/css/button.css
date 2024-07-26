@@ -56,3 +56,22 @@
   display: flex;
   justify-content: center;
 }
+
+.refresh-button {
+    background-color: #17a2b8; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Relleno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor en forma de mano */
+    font-size: 16px; /* Tamaño de fuente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px; /* Espacio entre botones */
+  }
+  
+  .refresh-button img {
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+  }
+  

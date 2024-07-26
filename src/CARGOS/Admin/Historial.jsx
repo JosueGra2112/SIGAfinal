@@ -56,6 +56,7 @@ const ConsultaSolicitudes = () => {
           <tr>
             <th>Nombre del Responsable</th>
             <th>Nombre del Solicitante</th>
+            <th>Motivo de Solicitud</th>
             <th>Clave</th>
             <th>Ciclo Escolar</th>
             <th>Alumno</th>
@@ -71,6 +72,7 @@ const ConsultaSolicitudes = () => {
             <tr key={index}>
               <td>{solicitud.nombre_responsable}</td>
               <td>{solicitud.nombre_solicitante}</td>
+              <td>{solicitud.motivo}</td>
               <td>{solicitud.clave}</td>
               <td>{solicitud.ciclo_escolar}</td>
               <td>{solicitud.alumno}</td>

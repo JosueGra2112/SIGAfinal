@@ -1,4 +1,3 @@
-// src/Components/EditModal.jsx
 import React, { useState, useEffect } from 'react';
 import Modal from './modalAct';
 
@@ -11,6 +10,7 @@ const EditModal = ({ isOpen, onClose, expediente, onSubmit }) => {
   const [exp, setExp] = useState(expediente ? expediente.Expediente : '');
   const [Resguardo, setResguardo] = useState(expediente ? expediente.Resguardo : '');
   const [Caja, setCaja] = useState(expediente ? expediente.Caja : '');
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (expediente) {
@@ -25,8 +25,29 @@ const EditModal = ({ isOpen, onClose, expediente, onSubmit }) => {
     }
   }, [expediente]);
 
+  const validateForm = () => {
+    const newErrors = {};
+    const namePattern = /^[A-Za-z\s]+$/;
+
+    if (!Clave) newErrors.Clave = 'La clave es requerida';
+    if (!cicloEsc) newErrors.cicloEsc = 'El ciclo escolar es requerido';
+    if (!Alumno) newErrors.Alumno = 'El nombre del alumno es requerido';
+    if (Alumno && !namePattern.test(Alumno)) newErrors.Alumno = 'El nombre solo debe contener letras';
+    if (!grado) newErrors.grado = 'El grado es requerido';
+    if (!grupo) newErrors.grupo = 'El grupo es requerido';
+    if (!exp) newErrors.exp = 'El expediente es requerido';
+    if (!Resguardo) newErrors.Resguardo = 'El resguardo es requerido';
+    if (!Caja) newErrors.Caja = 'La caja es requerida';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     onSubmit({ ...expediente, idexp: expediente.idexp, Clave, cicloEsc, Alumno, grado, grupo, exp, Resguardo, Caja });
     onClose();
   };
@@ -34,27 +55,45 @@ const EditModal = ({ isOpen, onClose, expediente, onSubmit }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <form onSubmit={handleSubmit} className="edit-form">
-          <center><h1>Actualizar Datos</h1></center>
+        <center><h1>Actualizar Datos</h1></center>
         <div className="form-row">
           <div className="form-group">
             <label>Clave: </label>
-            <input type="text" value={Clave} onChange={(e) => setClave(e.target.value)} />
+            <input
+              type="text"
+              value={Clave}
+              onChange={(e) => setClave(e.target.value)}
+            />
+            {errors.Clave && <p className="error">{errors.Clave}</p>}
           </div>
           <div className="form-group">
             <label>Ciclo Escolar: </label>
-            <input type="text" value={cicloEsc} onChange={(e) => setCicloEsc(e.target.value)} />
+            <input
+              type="text"
+              value={cicloEsc}
+              onChange={(e) => setCicloEsc(e.target.value)}
+            />
+            {errors.cicloEsc && <p className="error">{errors.cicloEsc}</p>}
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label>Alumno: </label>
-            <input type="text" value={Alumno} onChange={(e) => setAlumno(e.target.value)} />
+            <input
+              type="text"
+              value={Alumno}
+              onChange={(e) => setAlumno(e.target.value)}
+            />
+            {errors.Alumno && <p className="error">{errors.Alumno}</p>}
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label>Grado: </label>
-            <select value={grado} onChange={(e) => setGrado(e.target.value)}>
+            <select
+              value={grado}
+              onChange={(e) => setGrado(e.target.value)}
+            >
               <option value="">Seleccione el Grado</option>
               {[1, 2, 3].map((c) => (
                 <option key={c} value={c}>
@@ -62,10 +101,14 @@ const EditModal = ({ isOpen, onClose, expediente, onSubmit }) => {
                 </option>
               ))}
             </select>
+            {errors.grado && <p className="error">{errors.grado}</p>}
           </div>
           <div className="form-group">
             <label>Grupo: </label>
-            <select value={grupo} onChange={(e) => setGrupo(e.target.value)}>
+            <select
+              value={grupo}
+              onChange={(e) => setGrupo(e.target.value)}
+            >
               <option value="">Seleccione el Grupo</option>
               {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'].map((c) => (
                 <option key={c} value={c}>
@@ -73,12 +116,16 @@ const EditModal = ({ isOpen, onClose, expediente, onSubmit }) => {
                 </option>
               ))}
             </select>
+            {errors.grupo && <p className="error">{errors.grupo}</p>}
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label>Expediente: </label>
-            <select value={exp} onChange={(e) => setExp(e.target.value)}>
+            <select
+              value={exp}
+              onChange={(e) => setExp(e.target.value)}
+            >
               <option value="">Seleccione el Expediente</option>
               {['BOLETA', 'CERTIFICADO', 'CONSTANCIA'].map((c) => (
                 <option key={c} value={c}>
@@ -86,16 +133,27 @@ const EditModal = ({ isOpen, onClose, expediente, onSubmit }) => {
                 </option>
               ))}
             </select>
+            {errors.exp && <p className="error">{errors.exp}</p>}
           </div>
           <div className="form-group">
             <label>Resguardo: </label>
-            <input type="text" value={Resguardo} onChange={(e) => setResguardo(e.target.value)} />
+            <input
+              type="text"
+              value={Resguardo}
+              onChange={(e) => setResguardo(e.target.value)}
+            />
+            {errors.Resguardo && <p className="error">{errors.Resguardo}</p>}
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label>Caja: </label>
-            <input type="text" value={Caja} onChange={(e) => setCaja(e.target.value)} />
+            <input
+              type="text"
+              value={Caja}
+              onChange={(e) => setCaja(e.target.value)}
+            />
+            {errors.Caja && <p className="error">{errors.Caja}</p>}
           </div>
         </div>
         <div className="form-buttons">

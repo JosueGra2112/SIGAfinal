@@ -45,6 +45,11 @@ const Act = () => {
   }, [idUser]);
 
   const handleAgregarActividad = () => {
+    if (!rutaArchivo || rutaArchivo.type !== 'application/pdf') {
+      alert('Por favor, selecciona un archivo PDF.');
+      return;
+    }
+
     const formData = new FormData();
     formData.append('nombreAct', nombreAct);
     formData.append('idUser', idUser);
@@ -78,7 +83,7 @@ const Act = () => {
       <Header />
       <Menu />
       <center><h1>Actividades</h1></center>
-      <center><h3>Bienvenido {nameUser}</h3></center>
+      <label style={{ display: 'none' }}>Bienvenido {nameUser}</label>
       <button className="btn-primary" onClick={() => setIsModalOpen(true)}>
         Agregar Actividad
       </button>
@@ -128,7 +133,6 @@ const Act = () => {
           <tr>
             <th className="blue-header">Actividad</th>
             <th className="blue-header">PDF</th>
-            
           </tr>
         </thead>
         <tbody>

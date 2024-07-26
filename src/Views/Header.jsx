@@ -53,7 +53,7 @@ const Header = () => {
         
         <nav className="nav-links">
           <Link to="/" className="nav-link">Inicio</Link>
-          <Link to="/AcercaDe" className="nav-link">Acerca De</Link>
+          <Link to="/AcercaDe" className="nav-link">Planeacion Estrategica</Link>
           <Link to="/Login" className="nav-link">Iniciar Sesión</Link>
         </nav>
       </header>
