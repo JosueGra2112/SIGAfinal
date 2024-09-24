@@ -1,60 +1,26 @@
-/* CSS original sin header y footer */
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f8f8f8;
-  color: #333;
+/* Reset básico */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App {
-  text-align: center;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-main {
-  padding: 20px;
+#root {
+  height: 100%;
 }
 
-.noticia {
-  margin-bottom: 20px;
-}
-
-@media screen and (max-width: 600px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 7px;
-    right: 20px;
-    border-color: rgb(0, 0, 0);
-    border-radius: 3px;
-    background-color: #0300d1;
-    padding: 10px;
-  }
-
-  .centered-image {
-    display: block;
-    margin: 0 auto;
-    max-width: 10%;
-    top: 7px;
-    right: 20px;
-    padding: 10px;
-  }
-
-  .nav-links span {
-    cursor: pointer;
-    margin-bottom: 10px;
-    margin-right: 0;
-  }
-
-  header:hover .nav-links {
-    display: flex;
-  }
-}
-
-nav {
-  padding: 20px; /* Ajuste del padding para dar más espacio a las palabras */
-}
-
-nav button {
-  margin-right: 10px;
+.App-main {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

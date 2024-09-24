@@ -1,45 +1,81 @@
-/* Header.css */
-
+/* Estilos para el header */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #0088ff;
-  padding: 1px;
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-  position: fixed;
+  background-color: #007bff; /* Color de fondo Bootstrap */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  position: fixed; /* Para mantener el header siempre visible */
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
+  width: 100%; /* Asegura que el header ocupe todo el ancho */
+  padding: 0.5rem 1rem; /* Ajuste del padding para centrar los elementos */
 }
 
-.logo-container {
+/* Ajustes para el contenedor del logo */
+.navbar-brand {
   display: flex;
-  align-items: center;
+  align-items: center; /* Alineación vertical centrada del logo */
 }
 
 .logo {
-  max-width: 10%;
-  margin-right: 10px;
+  max-width: 40px; /* Tamaño del logo */
 }
 
-.nav-links {
-  
-  white-space: nowrap;
-  
+.esghar-name {
+  max-width: 150px; /* Tamaño del texto del nombre */
 }
 
-
-.nav-link {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  margin-right: 20px;
+/* Ajustes para el menú en pantallas grandes */
+.navbar-nav .nav-item .nav-link {
+  color: white !important; /* Color blanco para los enlaces */
+  font-size: 16px; /* Tamaño de fuente ajustado */
+  font-weight: 500; /* Peso de la fuente ajustado a normal */
+  padding: 10px 20px; /* Espaciado alrededor de los enlaces */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  transition: color 0.3s ease; /* Transición suave cuando se cambia el color */
 }
 
-/* Añade un margen superior al cuerpo de la página para compensar el header fijo */
+.navbar-nav .nav-item .nav-link:hover {
+  color: #ffdd57 !important; /* Color amarillo para hover */
+}
+
+/* Para dispositivos móviles */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5); /* Color del botón de menú en móviles */
+  margin-left: auto; /* Asegura que el botón se mueva a la derecha */
+  align-self: center; /* Alineación vertical del botón */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Corregir el color adicional */
+.bg-primary {
+  background-color: #007bff !important; /* Asegúrate de que el fondo sea uniforme */
+}
+
+/* Alineación del botón de hamburguesa a la derecha */
+.navbar-toggler {
+  margin-left: auto; /* Asegura que el botón se mueva a la derecha */
+}
+
+/* Para pantallas grandes */
+@media (min-width: 992px) {
+  .navbar-nav {
+    justify-content: flex-end; /* Alinea los enlaces a la derecha */
+  }
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 991.98px) {
+  .navbar-nav .nav-item {
+    text-align: center;
+    margin: 10px 0;
+  }
+}
+
+/* Para pantallas grandes, ajusta el espacio debajo del header */
 body {
-  margin-top: 120px; /* Ajusta este valor según el tamaño del header */
+  padding-top: 80px; /* Ajuste según el tamaño del header */
 }

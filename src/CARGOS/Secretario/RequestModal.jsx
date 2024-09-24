@@ -80,10 +80,10 @@ const SolicitarModal = ({ isOpen, onClose, expediente, onSubmit }) => {
             </div>
             <div className="solicitar-form-row">
               <div className="solicitar-form-group">
-                <label>Nombre de la persona que solicita Expediente: </label>
+                <label>Solicitante: </label>
                 <input
                   type="text"
-                  placeholder="Nombre completo y si es mamá, tutor, tía, amigo, conocido"
+                  placeholder="Nombre completo, Madre, Padre, amigo, conocido"
                   value={nombreSolicitante}
                   onChange={(e) => setNombreSolicitante(e.target.value)}
                   required
@@ -104,6 +104,7 @@ const SolicitarModal = ({ isOpen, onClose, expediente, onSubmit }) => {
                 {errors.motivo && <p className="error">{errors.motivo}</p>}
               </div>
             </div>
+            <h2>Informacion Solicitada</h2>
             <div className="solicitar-form-row">
               <div className="solicitar-form-group">
                 <label>Alumno: </label>
