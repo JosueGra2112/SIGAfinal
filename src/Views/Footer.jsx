@@ -16,8 +16,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-section image-container">
-        {/* Espacio para la imagen */}
-        <img src={hidalgo} alt="Escudo de Hidalgo" className="hidalgo-image" style={{alignItems:'center', maxWidth:'40%',marginLeft:'50px' , marginRight: '50px' }} />
+        <img src={hidalgo} alt="Escudo de Hidalgo" className="hidalgo-image" />
       </div>
 
       <div className="footer-section policies">
@@ -27,7 +26,6 @@ const Footer = () => {
 
       <div className="footer-section social-media">
         <h3>Redes Sociales</h3>
-        {/* Imágenes de Facebook y Email */}
         <img src={facebookImage} alt="Facebook" className="social-media-icon" />
         <img src={emailImage} alt="Email" className="social-media-icon" />
       </div>

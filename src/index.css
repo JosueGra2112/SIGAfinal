@@ -1,26 +1,22 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Ajuste de imágenes del carrusel para pantallas grandes */
+.carousel-image {
+  width: 50%; /* Ocupa el 50% del ancho de la pantalla en PC */
+  margin: 0 auto;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+/* Carrusel en dispositivos móviles */
+@media (max-width: 599px) {
+  .carousel-image {
+    width: 100%; /* En móviles, la imagen ocupará todo el ancho */
+  }
 }
 
-#root {
-  height: 100%;
-}
-
-.App-main {
+/* Ajuste general para el header */
+body {
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+.Inicio {
+  margin-top: 120px; /* Ajuste para compensar el header fijo */
 }

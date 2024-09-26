@@ -1,5 +1,4 @@
-/* En tu archivo Footer.css */
-
+/* Estilos generales para el footer */
 .footer {
   display: flex;
   justify-content: space-around;
@@ -7,8 +6,10 @@
   background-color: #2961d1;
   color: white;
   padding: 20px;
+  flex-wrap: wrap; /* Para que los elementos se envuelvan en pantallas más pequeñas */
 }
 
+/* Secciones del footer */
 .footer-section {
   flex: 1;
   text-align: left;
@@ -33,4 +34,47 @@
 .social-media-icon {
   max-width: 30px;
   margin-right: 10px;
+}
+
+/* Estilos para pantallas grandes (PC) */
+@media only screen and (min-width: 1024px) {
+  .footer {
+    justify-content: space-around;
+  }
+  .footer-section {
+    margin-right: 40px;
+  }
+}
+
+/* Estilos para pantallas medianas (tablets) */
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  .footer {
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+  .footer-section {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media only screen and (max-width: 768px) {
+  .footer {
+    flex-direction: column; /* Cambia la disposición a columna en móviles */
+    align-items: center;
+    text-align: center; /* Alinea todo en el centro */
+  }
+  .footer-section {
+    margin-bottom: 20px; /* Espacio entre las secciones */
+    margin-right: 0;
+  }
+  .hidalgo-image {
+    max-width: 60%;
+    margin: 0 auto;
+  }
+  .social-media-icon {
+    max-width: 40px; /* Aumenta el tamaño de los íconos en móvil */
+    margin-bottom: 10px;
+  }
 }

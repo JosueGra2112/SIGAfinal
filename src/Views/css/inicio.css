@@ -1,5 +1,115 @@
+/* Estilos para que se vea bien en PC y dispositivos móviles */
+
+.App-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.logo-lup {
+  max-width: 15%;
+  margin: 10px;
+}
+
+.sigatext-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sigatext {
+  max-width: 70%;
+}
+
+.siga {
+  max-width: 15%;
+  margin-top: 10px;
+}
+
+/* Estilos para el slider */
+.slider-container {
+  max-width: 80%;
+  margin: 20px auto;
+}
+
 .slider-img {
-    max-width: 100%;
-    margin-bottom: 20px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos para la sección de botones */
+.noticia {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  max-width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.noticia-img {
+  max-width: 40%;
+  margin-bottom: 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Media queries para hacer que todo sea responsivo */
+@media (max-width: 768px) {
+  .logo-lup {
+    max-width: 25%;
   }
-  
+
+  .sigatext {
+    max-width: 90%;
+  }
+
+  .siga {
+    max-width: 20%;
+  }
+
+  .slider-container {
+    max-width: 100%;
+  }
+
+  .slider-img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-lup {
+    max-width: 40%;
+  }
+
+  .sigatext {
+    max-width: 95%;
+  }
+
+  .siga {
+    max-width: 25%;
+  }
+
+  .slider-img {
+    max-width: 100%;
+  }
+}

@@ -18,7 +18,8 @@ import calendarioImage from '../IMG/calendario.png';
 import bitacoraImage from '../IMG/bitacora.png';
 import boletinImage from '../IMG/boletin.png';
 
-import Breadcrumbs from './Breadcrumbs'
+import Breadcrumbs from './Breadcrumbs';
+import './css/Inicio.css'; // Importamos el CSS personalizado
 
 const Inicio = () => {
   const botones = [
@@ -75,54 +76,38 @@ const Inicio = () => {
     <div className="Inicio">
       <Header />
       <Breadcrumbs />
-      <main className="App-main" style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={lup} alt="Lup" style={{ alignItems: 'center', maxWidth: '30%', marginLeft: '50px', marginRight: '50px' }} />
-        <div>
-          <center><img src={SIGATEXT} alt="SIGATEXT" style={{ maxWidth: '90%', marginLeft: '50px', marginRight: '50px' }} /></center>
-          <br />
-          <center><img src={SIGA} alt="SIGA" style={{ maxWidth: '10%' }} /></center>
+      <main className="App-main">
+        <img src={lup} alt="Lup" className="logo-lup" />
+        <div className="sigatext-container">
+          <img src={SIGATEXT} alt="SIGATEXT" className="sigatext" />
+          <img src={SIGA} alt="SIGA" className="siga" />
         </div>
       </main>
 
-      <center>
-        <main className="App-main" style={{ alignItems: 'center' }}>
+      <Slider {...settings} className="slider-container">
+        <div>
+          <img src={IM1} alt="IM1" className="slider-img" />
+        </div>
+        <div>
+          <img src={IM2} alt="IM2" className="slider-img" />
+        </div>
+        <div>
+          <img src={IM3} alt="IM3" className="slider-img" />
+        </div>
+      </Slider>
 
-        </main>
-      </center>
-      <center>
-        <Slider {...settings}>
-          <div style={{ textAlign: 'center' }}>
-            <center>
-              <img src={SIGATEXT} alt="SIGATEXT" style={{ maxWidth: '50%' }} />
-              <img src={lup} alt="lup" style={{ maxWidth: '20%' }} />
-              <img src={SIGA} alt="SIGA" style={{ maxWidth: '10%', display: 'inline-block' }} />
-            </center>
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <img src={IM1} alt="IM1" style={{ maxWidth: '50%', marginBottom: '20px', display: 'inline-block' }} />
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <img src={IM2} alt="IM2" style={{ maxWidth: '50%', marginBottom: '20px', display: 'inline-block' }} />
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <img src={IM3} alt="IM3" style={{ maxWidth: '50%', marginBottom: '20px', display: 'inline-block' }} />
-          </div>
-        </Slider>
-      </center>
-
-      <main className="App-main" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <main className="App-main">
         {botones.map((boton, index) => (
-          <Link to={boton.link} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to={boton.link} key={index} className="noticia-link">
             <div
               className="noticia"
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={() => handleMouseLeave(index)}
-              style={{ position: 'relative', overflow: 'hidden', border: '1px solid #ccc', borderRadius: '3px', padding: '10px', margin: '10px', textAlign: 'center', maxWidth: '300px', transition: 'transform 0.3s ease' }}
             >
-              <img id={`image-${index}`} src={boton.imagen} alt={boton.titulo} style={{ maxWidth: '40%', marginBottom: '10px', position: 'relative', transition: 'transform 0.3s ease' }} />
-              <div className="overlay" id={`overlay-${index}`} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: 0, transition: 'opacity 0.3s ease' }}>
-                <h2 style={{ margin: 0 }}>{boton.titulo}</h2>
-                <p style={{ margin: 0 }}>{boton.descripcion}</p>
+              <img id={`image-${index}`} src={boton.imagen} alt={boton.titulo} className="noticia-img" />
+              <div className="overlay" id={`overlay-${index}`}>
+                <h2>{boton.titulo}</h2>
+                <p>{boton.descripcion}</p>
               </div>
             </div>
           </Link>
