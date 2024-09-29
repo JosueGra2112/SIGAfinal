@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './css/Login.css';
-import './css/alerts.css';
 import Loginim from '../IMG/userv.png';
 import Header from './Header';
 import Breadcrumbs from './Breadcrumbs';
@@ -49,10 +47,8 @@ const Login = () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          // Almacena el nombre completo del usuario en el localStorage
           const fullName = `${data.data[0].nombre} ${data.data[0].ap_paterno} ${data.data[0].ap_materno}`;
           localStorage.setItem('user', JSON.stringify(fullName));
-
           localStorage.setItem('idUser', data.data[0].iduser);
 
           if (cargo === 'Administrador') {
@@ -66,7 +62,7 @@ const Login = () => {
           } else if (cargo === 'Directivos') {
             navigate('/SesionDic');
           } else {
-            setErrorLogin(false); // Limpiamos el estado de errorLogin
+            setErrorLogin(false);
             showNotification('Autenticación exitosa');
           }
         } else {
@@ -89,107 +85,94 @@ const Login = () => {
       <Header />
       <Breadcrumbs />
       <br />
-      <center>
-        {registroExitoso && (
-          <div className="mensaje-exitoso">Bienvenido</div>
-        )}
-      </center>
-      <div className="login-container">
-        <div className="login-box">
-          <img src={Loginim} alt="Loginim" className="logo" style={{ alignItems: 'center', maxWidth: '30%' }} />
-          <h2>Iniciar Sesión</h2>
-          <form>
-            <div className="input-group">
-              <label htmlFor="cargo">Seleccionar Cargo</label>
-              <select
-                id="cargo"
-                value={cargo}
-                onChange={(e) => setCargo(e.target.value)}
-              >
-                <option value="">Seleccionar...</option>
-                <option value="Administrador">Administrador</option>
-                <option value="Directivos">Directivos</option>
-                <option value="Administrativo">Administrativo</option>
-                <option value="Docente">Docente</option>
-                <option value="Secretario">Secretario</option>
-              </select>
-            </div>
-            <div className="input-group">
-              <label htmlFor="username">Usuario</label>
-              <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="password">Contraseña</label>
-              <div className="password-input">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <button
-                  type="button"
-                  className="show"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? 'Ocultar' : 'Mostrar'}
-                </button>
+      <div className="container mt-5">
+        <center>
+          {registroExitoso && (
+            <div className="alert alert-success" role="alert">Bienvenido</div>
+          )}
+        </center>
+        <div className="row justify-content-center">
+          <div className="col-md-4">
+            <div className="card">
+              <div className="card-body">
+                <img src={Loginim} alt="Loginim" className="img-fluid mb-3 mx-auto d-block" style={{ maxWidth: '100px' }} />
+                <h2 className="text-center mb-4">Iniciar Sesión</h2>
+                <form>
+                  <div className="form-group">
+                    <label htmlFor="cargo">Seleccionar Cargo</label>
+                    <select
+                      id="cargo"
+                      className="form-control"
+                      value={cargo}
+                      onChange={(e) => setCargo(e.target.value)}
+                    >
+                      <option value="">Seleccionar...</option>
+                      <option value="Administrador">Administrador</option>
+                      <option value="Directivos">Directivos</option>
+                      <option value="Administrativo">Administrativo</option>
+                      <option value="Docente">Docente</option>
+                      <option value="Secretario">Secretario</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="username">Usuario</label>
+                    <input
+                      type="text"
+                      id="username"
+                      className="form-control"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Contraseña</label>
+                    <div className="input-group">
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        id="password"
+                        className="form-control"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <div className="input-group-append">
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+            
+                  <button type="button" className="btn btn-warning btn-block" onClick={handleLogin}>
+                    Acceder
+                  </button>
+                </form>
+
+                <p className="text-center mt-3">
+                  <Link to="/Registro" className="nav-linkLog">¿No tienes cuenta? Registrarse</Link>
+                </p>
+                <p className="text-center">
+                  <Link to="/ValidarUsuario" className="nav-linkLog">¿Olvidaste tu contraseña?</Link>
+                </p>
+                <p className="text-center">
+                  <Link to="/Rest" className="nav-linkLog">Restaurar por correo electrónico</Link>
+                </p>
               </div>
             </div>
-
-            {formError && <p className="error-message"></p>}
-            {errorLogin && <p className="error-message"></p>}
-
-            <button type="button" className="login-button" onClick={handleLogin}>
-              Acceder
-            </button>
-          </form>
-
-          <p className="register-link">¿No tienes cuenta?</p>
-          <Link 
-            to="/Registro" 
-            className="nav-linkLog"
-            style={{ transition: 'text-shadow 0.3s ease' }}
-            onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.9)'}
-            onMouseLeave={(e) => e.target.style.textShadow = 'none'}
-          >
-            Registrarse
-          </Link>
-          <p className="register-link">¿Olvidaste tu contraseña?</p>
-          <Link 
-            to="/ValidarUsuario" 
-            className="nav-linkLog"
-            style={{ transition: 'text-shadow 0.3s ease' }}
-            onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.5)'}
-            onMouseLeave={(e) => e.target.style.textShadow = 'none'}
-          >
-            Restaurar por Pregunta secreta
-          </Link>
-          <br />
-          <Link 
-            to="/Rest" 
-            className="nav-linkLog"
-            style={{ transition: 'text-shadow 0.3s ease' }}
-            onMouseEnter={(e) => e.target.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.5)'}
-            onMouseLeave={(e) => e.target.style.textShadow = 'none'}
-          >
-            Restaurar por correo electronico
-          </Link>
+          </div>
         </div>
       </div>
+
       {showAlert && (
-        <div className="alert-overlay">
-          <div className="alert-container">
-            <div className="alert-content">
-              <span className="close-button" onClick={() => setShowAlert(false)}>&times;</span>
-              <p>{alertMessage}</p>
-            </div>
-          </div>
+        <div className="alert alert-danger alert-dismissible fade show" role="alert">
+          {alertMessage}
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       )}
     </div>

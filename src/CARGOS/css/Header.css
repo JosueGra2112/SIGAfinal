@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #0088ff;
-  padding: 1px;
+  padding: 10px;
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
   position: fixed;
   top: 0;
@@ -20,16 +20,12 @@
 }
 
 .logo {
-  max-width: 10%;
-  margin-right: 10px;
+  max-width: 150px; /* Tamaño del logo en pantallas grandes */
 }
 
 .nav-links {
-  
   white-space: nowrap;
-  
 }
-
 
 .nav-link {
   text-decoration: none;
@@ -38,6 +34,25 @@
   font-size: 16px;
   margin-right: 20px;
 }
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Coloca el logo y el enlace en una columna */
+    align-items: center;
+    padding: 15px;
+  }
+
+  .logo {
+    max-width: 100px; /* Tamaño del logo en pantallas pequeñas */
+  }
+
+  .nav-link {
+    font-size: 14px; /* Ajusta el tamaño de la fuente del enlace */
+    margin-top: 10px;
+  }
+}
+
 
 /* Añade un margen superior al cuerpo de la página para compensar el header fijo */
 body {

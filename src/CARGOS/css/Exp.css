@@ -1,0 +1,49 @@
+.table-container {
+    margin: 20px auto;
+  }
+  
+  .mobile-list .expediente-card {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .expediente-name {
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .expediente-name:hover {
+    background-color: #0056b3;
+  }
+  
+  .toggle-icon {
+    float: right;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .action-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .action-button:hover {
+    background-color: #0056b3;
+  }
+  

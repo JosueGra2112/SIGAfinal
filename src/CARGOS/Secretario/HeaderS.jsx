@@ -1,25 +1,16 @@
-// Header.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import esgharImage from '../IMG/ESGHAR.png';
-import esgharNAME from '../IMG/ESGHARNAME.png';
+import esgharNAME from '../IMG/SIGA.png';
 import '../css/Header.css';
 
 const Header = () => {
   return (
     <header className="header">
-      {/* Encabezado */}
       <div className="logo-container">
-        <img src={esgharImage} alt="Esghar" className="logo" />
-        <img src={esgharNAME} alt="esgharNAME" style={{ maxWidth:'20%'}} />
+        <center><img src={esgharNAME} alt="esgharNAME" className="logo" /></center>
       </div>
-      <div className="nav-links combo-box">
-        {/* Enlaces de navegación */}
-
-            <Link to="/Login" className="nav-link">Cerrar Sesion</Link>
-
-            <br />
-
+      <div>
+        <center><Link to="/Login" className="nav-link">Cerrar Sesión</Link></center>
       </div>
     </header>
   );
