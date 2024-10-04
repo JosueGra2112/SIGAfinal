@@ -1,6 +1,15 @@
 # SIGAfinal
 ## Descripción
-Este repositorio alberga toda la información relacionada con el desarrollo y gestión del sistema SIGA, una plataforma para la administración integral de la escuela. Aquí se gestiona tanto el código del proyecto como las tareas definidas en Asana, lo que permite una integración entre la codificación y el seguimiento del progreso.
+Este repositorio alberga toda la información relacionada con el desarrollo y gestión del sistema SIGA, una plataforma para la administración integral de la escuela. Aquí se gestiona el código del proyecto, lo que permite una integración entre la codificación.
+
+## Desarrolladores
+- **Hernández Badillo Álvaro Fernando** - 20210727
+- **Granados Cortes Josué** - 20211306
+- **Bautista Cardona Jaime** - 20210646
+
+Grupo B - Décimo Cuatrimestre  
+Carrera de Ingeniería en Desarrollo y Gestión de Software
+
 
 ## Objetivos
 - **Alojar y revisar el código del proyecto:** Mantener el código constantemente revisado y actualizado para evitar errores de codificación.
@@ -41,8 +50,6 @@ Para comenzar a trabajar con el proyecto, es necesario clonar el repositorio des
 ```bash
 git clone https://github.com/JosueGra2112/SIGAfinal.git
 ```
-
-
 
 ## Instalación de Dependencias
 Una vez clonado el repositorio, se debe realizar la instalación de las dependencias especificadas en el archivo de configuración del proyecto. Esto garantiza que todos los módulos necesarios para el funcionamiento de SIGA estén disponibles.
