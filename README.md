@@ -40,7 +40,10 @@ La estrategia de despliegue seleccionada incluye:
 ## Clonación del Repositorio
 Para comenzar a trabajar con el proyecto, es necesario clonar el repositorio desde GitHub.
 
+
+```bash
 git clone https://github.com/JosueGra2112/PRY-SIGA-ESGHAR.git
+
 Instalación de Dependencias
 Una vez clonado el repositorio, se debe realizar la instalación de las dependencias especificadas en el archivo de configuración del proyecto. Esto garantiza que todos los módulos necesarios para el funcionamiento de SIGA estén disponibles.
 
