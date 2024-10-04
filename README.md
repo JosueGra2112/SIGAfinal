@@ -52,53 +52,47 @@ Una vez clonado el repositorio, se debe realizar la instalación de las dependen
 ### Ejemplo de instalación de dependencias
 ```bash
 npm install
-Librerías y Funcionalidades
+```
+
+## Librerías y Funcionalidades
 El proyecto utiliza las siguientes librerías y funcionalidades:
 
-Express.js: Para la creación del servidor y manejo de rutas.
-Mongoose: Para la interacción con la base de datos MongoDB.
-Dotenv: Para gestionar las variables de entorno.
-Cors: Para permitir solicitudes de diferentes dominios.
-Jest: Para realizar pruebas unitarias.
-Ejecución del Proyecto
+- **Express.js:** Para la creación del servidor y manejo de rutas.
+- **Mongoose:** Para la interacción con la base de datos MongoDB.
+- **Dotenv:** Para gestionar las variables de entorno.
+- **Cors:** Para permitir solicitudes de diferentes dominios.
+- **Jest:** Para realizar pruebas unitarias.
+
+## Ejecución del Proyecto
 Para ejecutar el proyecto en el entorno de desarrollo local, se necesita iniciar el servidor de desarrollo para visualizar la aplicación en el navegador.
 
-Ejemplo de inicio del servidor
-bash
-Copiar código
+### Ejemplo de inicio del servidor
+```bash
 npm start
-Cuando el proyecto esté listo para ser desplegado, se pueden generar los archivos de la versión optimizada para producción.
+```
 
-Pruebas y Emulación
+## Pruebas y Emulación
 Es esencial utilizar herramientas como el Simulador móvil y las herramientas de desarrollo de Google Chrome para verificar que la aplicación sea completamente responsiva y funcione correctamente en dispositivos móviles. Estas herramientas permiten emular diferentes tamaños de pantalla y dispositivos, garantizando que la experiencia del usuario sea óptima en todos los entornos.
 
 Además, se recomienda la automatización de pruebas en el flujo de integración continua para identificar posibles errores y mantener la calidad del código.
 
-Contribuciones
+## Contribuciones
 Las contribuciones son bienvenidas. Si deseas colaborar en el proyecto, por favor sigue los siguientes pasos:
 
-Haz un fork del proyecto.
-
-Crea tu rama:
-
-bash
-Copiar código
-git checkout -b feature/nueva-funcionalidad
-Realiza tus cambios y haz commit:
-
-bash
-Copiar código
-git commit -m 'Agregada nueva funcionalidad'
-Haz push a la rama:
-
-bash
-Copiar código
+1. Haz un fork del proyecto.
+2. Crea tu rama:
+   ```bash
+   git checkout -b feature/nueva-funcionalidad
+   ```
+3. Realiza tus cambios y haz commit:
+   ```bash
+   git commit -m 'Agregada nueva funcionalidad'
+    ```
+4. Haz push a la rama:
+   ```bash
 git push origin feature/nueva-funcionalidad
-Abre un pull request.
+ ```
 
-Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
-Notas
-Asegúrate de que el enlace del repositorio sea correcto.
-Puedes ajustar o añadir más librerías y funcionalidades según las que estés utilizando en tu proyecto."# PRY-SIGA-ESGHAR" 
+
+
