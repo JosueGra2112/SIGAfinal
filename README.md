@@ -56,11 +56,10 @@ npm install
 El proyecto utiliza las siguientes librerías y funcionalidades:
 
 - **Express.js:** Para la creación del servidor y manejo de rutas.
-- **Mongoose:** Para la interacción con la base de datos MongoDB.
+- **MySQL:** Para la interacción con la base de datos.
 - **Dotenv:** Para gestionar las variables de entorno.
 - **Cors:** Para permitir solicitudes de diferentes dominios.
 - **Jest:** Para realizar pruebas unitarias.
-
 ## Ejecución del Proyecto
 Para ejecutar el proyecto en el entorno de desarrollo local, se necesita iniciar el servidor de desarrollo para visualizar la aplicación en el navegador.
 
