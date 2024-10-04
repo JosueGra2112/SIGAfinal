@@ -1,6 +1,4 @@
-# PRY-SIGA-ESGHAR
-# SIGA - Sistema de Gestión Integral Administrativa
-
+# SIGAfinal
 ## Descripción
 Este repositorio alberga toda la información relacionada con el desarrollo y gestión del sistema SIGA, una plataforma para la administración integral de la escuela. Aquí se gestiona tanto el código del proyecto como las tareas definidas en Asana, lo que permite una integración entre la codificación y el seguimiento del progreso.
 
@@ -41,7 +39,7 @@ La estrategia de despliegue seleccionada incluye:
 Para comenzar a trabajar con el proyecto, es necesario clonar el repositorio desde GitHub.
 
 ```bash
-git clone https://github.com/JosueGra2112/PRY-SIGA-ESGHAR.git
+git clone https://github.com/JosueGra2112/SIGAfinal.git
 ```
 
 
@@ -75,21 +73,3 @@ npm start
 Es esencial utilizar herramientas como el Simulador móvil y las herramientas de desarrollo de Google Chrome para verificar que la aplicación sea completamente responsiva y funcione correctamente en dispositivos móviles. Estas herramientas permiten emular diferentes tamaños de pantalla y dispositivos, garantizando que la experiencia del usuario sea óptima en todos los entornos.
 
 Además, se recomienda la automatización de pruebas en el flujo de integración continua para identificar posibles errores y mantener la calidad del código.
-
-## Contribuciones
-Las contribuciones son bienvenidas. Si deseas colaborar en el proyecto, por favor sigue los siguientes pasos:
-
-1. Haz un fork del proyecto.
-2. Crea tu rama:
-   ```bash
-   git checkout -b feature/nueva-funcionalidad
-   ```
-3. Realiza tus cambios y haz commit:
-   ```bash
-   git commit -m 'Agregada nueva funcionalidad'
-    ```
-4. Haz push a la rama:
-   ```bash
-   git push origin feature/nueva-funcionalidad
-   ```
-##
