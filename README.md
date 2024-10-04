@@ -90,9 +90,6 @@ Las contribuciones son bienvenidas. Si deseas colaborar en el proyecto, por favo
     ```
 4. Haz push a la rama:
    ```bash
-git push origin feature/nueva-funcionalidad
- ```
-
-
-
-
+   git push origin feature/nueva-funcionalidad
+   ```
+##
