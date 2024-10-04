@@ -1,4 +1,4 @@
-"# PRY-SIGA-ESGHAR" 
+# PRY-SIGA-ESGHAR
 # SIGA - Sistema de Gestión Integral Administrativa
 
 ## Descripción
@@ -40,19 +40,32 @@ La estrategia de despliegue seleccionada incluye:
 ## Clonación del Repositorio
 Para comenzar a trabajar con el proyecto, es necesario clonar el repositorio desde GitHub.
 
-
 ```bash
 git clone https://github.com/JosueGra2112/PRY-SIGA-ESGHAR.git
+```
 
-Instalación de Dependencias
+
+
+## Instalación de Dependencias
 Una vez clonado el repositorio, se debe realizar la instalación de las dependencias especificadas en el archivo de configuración del proyecto. Esto garantiza que todos los módulos necesarios para el funcionamiento de SIGA estén disponibles.
 
-# Ejemplo de instalación de dependencias
+### Ejemplo de instalación de dependencias
+```bash
 npm install
+Librerías y Funcionalidades
+El proyecto utiliza las siguientes librerías y funcionalidades:
+
+Express.js: Para la creación del servidor y manejo de rutas.
+Mongoose: Para la interacción con la base de datos MongoDB.
+Dotenv: Para gestionar las variables de entorno.
+Cors: Para permitir solicitudes de diferentes dominios.
+Jest: Para realizar pruebas unitarias.
 Ejecución del Proyecto
 Para ejecutar el proyecto en el entorno de desarrollo local, se necesita iniciar el servidor de desarrollo para visualizar la aplicación en el navegador.
 
-# Ejemplo de inicio del servidor
+Ejemplo de inicio del servidor
+bash
+Copiar código
 npm start
 Cuando el proyecto esté listo para ser desplegado, se pueden generar los archivos de la versión optimizada para producción.
 
@@ -65,14 +78,27 @@ Contribuciones
 Las contribuciones son bienvenidas. Si deseas colaborar en el proyecto, por favor sigue los siguientes pasos:
 
 Haz un fork del proyecto.
-Crea tu rama: git checkout -b feature/nueva-funcionalidad.
-Realiza tus cambios y haz commit: git commit -m 'Agregada nueva funcionalidad'.
-Haz push a la rama: git push origin feature/nueva-funcionalidad.
+
+Crea tu rama:
+
+bash
+Copiar código
+git checkout -b feature/nueva-funcionalidad
+Realiza tus cambios y haz commit:
+
+bash
+Copiar código
+git commit -m 'Agregada nueva funcionalidad'
+Haz push a la rama:
+
+bash
+Copiar código
+git push origin feature/nueva-funcionalidad
 Abre un pull request.
+
 Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
-
-### Notas
-1. **Actualiza el enlace del repositorio** en la sección de Clonación del Repositorio.
-2. **Ajusta cualquier detalle específico** de tu proyecto según sea necesario.
+Notas
+Asegúrate de que el enlace del repositorio sea correcto.
+Puedes ajustar o añadir más librerías y funcionalidades según las que estés utilizando en tu proyecto."# PRY-SIGA-ESGHAR" 
