@@ -46,4 +46,12 @@
   .action-button:hover {
     background-color: #0056b3;
   }
+  th {
+    background-color: #007bff; /* Fondo azul */
+    color: white; /* Texto blanco */
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ddd;
+  }
   

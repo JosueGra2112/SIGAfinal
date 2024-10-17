@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import Header from './HeaderS';
 import Menu from './MenuS';
-import '../css/Diario.css'; // Importa el archivo CSS
-import boletinImg from '../IMG/boletin.png'; // Asegúrate de ajustar la ruta según tu estructura de carpetas
-import bitacoraImg from '../IMG/bitacora.png'; // Asegúrate de ajustar la ruta según tu estructura de carpetas
+import axios from 'axios';
+import '../css/Diario.css'; 
+import boletinImg from '../IMG/boletin.png'; 
+import bitacoraImg from '../IMG/bitacora.png'; 
 import { useNavigate } from 'react-router-dom';
 
-const Bitacoras = () => {
+const DiarioEventSec = () => {
   const [nuevaActividad, setNuevaActividad] = useState({
     tipoDiario: '',
     titulo: '',
     fecha: '',
     descripcion: '',
-    thora: '' // Agregar campo "thora"
+    thora: '' 
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [username, setUsername] = useState('');
-  const [showConfirmation, setShowConfirmation] = useState(false); // Estado para mostrar la confirmación
+  const [showConfirmation, setShowConfirmation] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser && storedUser[0] && storedUser[0].Nombre) {
       setUsername(storedUser[0].Nombre);
-      console.log('Nombre del usuario:', storedUser[0].Nombre); // Verifica el nombre recuperado
     }
   }, []);
 
@@ -35,32 +35,57 @@ const Bitacoras = () => {
     }));
   };
 
-  const agregarActividad = () => {
-    if (!validateForm()) {
-      return;
-    }
+  const registrarActividad = async () => {
+    if (!validateForm()) return;
 
-    fetch('https://sigaemail.host8b.me/registrarDiario.php', {    
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(nuevaActividad),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Respuesta del servidor:', data);
-      setNuevaActividad({
-        tipoDiario: '',
-        titulo: '',
-        fecha: '',
-        descripcion: '',
-        thora: '' // Limpiar campo "thora"
-      });
-      setSuccessMessage('Diario creado exitosamente');
-      setShowConfirmation(false); // Ocultar la confirmación después de agregar la actividad
-    })
-    .catch(error => console.error('Error al registrar la actividad:', error));
+    try {
+      const response = await axios.post('https://sigaemail.host8b.me/registrarDiario.php', nuevaActividad);
+      if (response.data.success) {
+        setSuccessMessage('Diario creado exitosamente');
+        enviarNotificaciones(response.data);
+        setNuevaActividad({
+          tipoDiario: '',
+          titulo: '',
+          fecha: '',
+          descripcion: '',
+          thora: '' 
+        });
+        setShowConfirmation(false);
+      } else {
+        console.error('Error al registrar actividad:', response.data.message);
+        alert('Error al registrar la actividad. Verifica los datos e intenta nuevamente.');
+      }
+    } catch (error) {
+      console.error('Error en registrarDiario:', error);
+      alert('Error al registrar la actividad. Verifica los datos e intenta nuevamente.');
+    }
+  };
+
+  const enviarNotificaciones = async (data) => {
+    try {
+      const tokensResponse = await axios.get('https://sigaemail.host8b.me/ConsultarTokens.php');
+      if (tokensResponse.data.success) {
+        const tokens = tokensResponse.data.tokens;
+        tokens.forEach(token => {
+          axios.post('https://siga-firebase-dmugl1qgi-joxs-projects-fdf96bd4.vercel.app/', {
+            tokenUser: token,
+            title: data.data.title,
+            body: data.data.body,
+            url: data.data.url
+          })
+          .then(response => {
+            console.log('Notificación enviada para token:', token);
+          })
+          .catch(error => {
+            console.error('Error al enviar notificación:', error);
+          });
+        });
+      } else {
+        console.error('Error al consultar tokens:', tokensResponse.data.message);
+      }
+    } catch (error) {
+      console.error('Error en ConsultarTokens:', error);
+    }
   };
 
   const validateForm = () => {
@@ -73,14 +98,12 @@ const Bitacoras = () => {
   };
 
   const handleVerify = () => {
-    if (!validateForm()) {
-      return;
-    }
-    setShowConfirmation(true); // Mostrar la confirmación
+    if (!validateForm()) return;
+    setShowConfirmation(true); 
   };
 
   const handleCancel = () => {
-    setShowConfirmation(false); // Ocultar la confirmación
+    setShowConfirmation(false); 
   };
 
   const handleNavigate = (route) => {
@@ -157,7 +180,7 @@ const Bitacoras = () => {
           <div className="confirmation-dialog">
             <p>Verifique que los datos estén correctos.</p>
             <p>Los boletines y los datos que se registren en la bitácora no se pueden eliminar.</p>
-            <button className="button" onClick={agregarActividad}>Aceptar</button>
+            <button className="button" onClick={registrarActividad}>Aceptar</button>
             <button className="button secondary" onClick={handleCancel}>Cancelar</button>
           </div>
         )}
@@ -166,4 +189,4 @@ const Bitacoras = () => {
   );
 };
 
-export default Bitacoras;
+export default DiarioEventSec;

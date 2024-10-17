@@ -1,5 +1,4 @@
 /* Estilos para que se vea bien en PC y dispositivos móviles */
-
 .App-main {
   display: flex;
   align-items: center;
@@ -37,6 +36,11 @@
 .slider-img {
   max-width: 100%;
   height: auto;
+  transition: transform 0.5s ease;
+}
+
+.slider-img:hover {
+  transform: scale(1.05);
 }
 
 /* Estilos para la sección de botones */
@@ -49,14 +53,25 @@
   margin: 10px;
   text-align: center;
   max-width: 300px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.noticia:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .noticia-img {
   max-width: 40%;
   margin-bottom: 10px;
+  transition: transform 0.3s ease;
 }
 
+.noticia:hover .noticia-img {
+  transform: scale(1.1);
+}
+
+/* Overlay: Animación de opacidad */
 .overlay {
   position: absolute;
   top: 0;
@@ -71,6 +86,10 @@
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+
+.noticia:hover .overlay {
+  opacity: 1;
 }
 
 /* Media queries para hacer que todo sea responsivo */

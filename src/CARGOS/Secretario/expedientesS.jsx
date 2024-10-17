@@ -33,6 +33,21 @@ const Expedientes = () => {
     fetchExpedientes();
   }, []);
 
+  // Función para manejar la búsqueda avanzada
+  const handleAdvancedSearchSubmit = (searchCriteria) => {
+    const filtered = expedientes.filter(expediente => {
+      return (
+        (!searchCriteria.nombre || expediente.Alumno.toLowerCase().includes(searchCriteria.nombre.toLowerCase())) &&
+        (!searchCriteria.cicloEsc || expediente.cicloEsc.includes(searchCriteria.cicloEsc)) &&
+        (!searchCriteria.grado || expediente.Grado === searchCriteria.grado) &&
+        (!searchCriteria.grupo || expediente.Grupo === searchCriteria.grupo) &&
+        (!searchCriteria.exp || expediente.Expediente === searchCriteria.exp)
+      );
+    });
+    setFilteredExpedientes(filtered);
+    setShowModal(false);  // Cerrar el modal después de la búsqueda
+  };
+
   const handleOpenSolicitarModal = (expediente) => {
     setSelectedExpediente(expediente);
     setShowSolicitarModal(true);
@@ -60,6 +75,11 @@ const Expedientes = () => {
           Refrescar
         </button>
       </div>
+
+      {/* Mensaje si no hay resultados */}
+      {filteredExpedientes.length === 0 && (
+        <p>No se encontraron resultados</p>
+      )}
 
       {/* Vista de tabla en pantallas grandes */}
       <div className="table-container d-none d-lg-block">
@@ -138,7 +158,7 @@ const Expedientes = () => {
       </div>
 
       {/* Modales para editar y solicitar */}
-      <AdvancedSearchModal isOpen={showModal} onClose={() => setShowModal(false)} />
+      <AdvancedSearchModal isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={handleAdvancedSearchSubmit} />
       <EditModal isOpen={showEditModal} onClose={() => setShowEditModal(false)} expediente={selectedExpediente} />
       <SolicitarModal isOpen={showSolicitarModal} onClose={() => setShowSolicitarModal(false)} expediente={selectedExpediente} />
     </div>

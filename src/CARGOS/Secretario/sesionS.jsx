@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Header from './HeaderS';
 import Menu from './MenuS';
-import lup from '../IMG/pclup.png';
+import lup from '../IMG/SigaLogo.png';
 import SIGATEXT from '../IMG/SIGATEXT.png';
 import SIGA from '../IMG/SIGA.png';
 import BIEN from '../IMG/BIEN.png';

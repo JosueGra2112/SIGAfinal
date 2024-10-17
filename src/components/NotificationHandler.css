@@ -1,0 +1,41 @@
+.custom-toast {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #333333; /* Texto negro */
+  font-family: 'Arial', sans-serif;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-left: 5px solid #007bff; /* Línea de borde azul */
+}
+
+.notification-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.notification-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff; /* Azul oscuro */
+  margin-bottom: 6px;
+}
+
+.notification-body {
+  font-size: 15px;
+  color: #555555; /* Gris oscuro */
+  line-height: 1.4;
+}
+
+.notification-link {
+  font-size: 14px;
+  font-weight: bold;
+  color: #007bff; /* Azul */
+  text-decoration: none;
+  margin-top: 8px;
+  align-self: flex-end;
+}
+
+.notification-link:hover {
+  text-decoration: underline;
+}
