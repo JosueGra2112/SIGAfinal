@@ -86,9 +86,9 @@ const Expedientes = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>Clave</th>
-              <th>Ciclo Escolar</th>
+              <th>CURP</th>
               <th>Alumno</th>
+              <th>Ciclo Escolar</th>
               <th>Grado</th>
               <th>Grupo</th>
               <th>Expediente</th>
@@ -102,8 +102,8 @@ const Expedientes = () => {
             {filteredExpedientes.map(expediente => (
               <tr key={expediente.idexp}>
                 <td>{expediente.Clave}</td>
-                <td>{expediente.cicloEsc}</td>
                 <td>{expediente.Alumno}</td>
+                <td>{expediente.cicloEsc}</td>
                 <td>{expediente.Grado}</td>
                 <td>{expediente.Grupo}</td>
                 <td>{expediente.Expediente}</td>
@@ -111,7 +111,7 @@ const Expedientes = () => {
                 <td>{expediente.Caja}</td>
                 <td>
                   <a href={`https://sigaemail.host8b.me/PDF/${expediente.archivo}`} target="_blank" rel="noopener noreferrer">
-                    <img src={pdfimg} alt="Ver PDF" style={{ maxWidth: '20px' }} />
+                    <center><img src={pdfimg} style={{ maxWidth: '20px'}} /></center>
                   </a>
                 </td>
                 <td>
