@@ -78,6 +78,7 @@ import BoletinSec from './CARGOS/Secretario/BoletinSec';
 
 // Notificaciones
 import NotificationHandler from './components/NotificationHandler';
+//import SessionTimeoutHandler from '../src/SessionTimeoutHandler';
 import { useLocalStorage } from 'react-use';
 
 const NotFound = () => (
@@ -94,13 +95,14 @@ const NotFound = () => (
 
 const App = () => {
   const [user] = useLocalStorage('user');
-  const TIMEOUT_DURATION = 1000 * 60 * 5;
+  const TIMEOUT_DURATION = 1000 * 60 * 5; // 5 minutos de inactividad
   console.log("CSP activo");
 
   return (
     <body>
       <Router>
         <NotificationHandler />
+        <ErrorHandler />
         <SessionTimeoutHandler timeoutDuration={TIMEOUT_DURATION} />
         <Helmet>
           <meta http-equiv="Content-Security-Policy" content="

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../css/modalRegistro.css'; // Importa el archivo CSS específico para el modal de registro
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -11,9 +13,10 @@ const Modal = ({ isOpen, onClose }) => {
     expediente: '',
     resguardo: '',
     caja: '',
-    archivo: null,
+    archivo: null, // Almacena tanto el archivo PDF como la foto
   });
 
+  const [archivoNombre, setArchivoNombre] = useState(''); // Para mostrar el nombre del archivo
   const [errors, setErrors] = useState('');
 
   const handleChange = (e) => {
@@ -23,12 +26,13 @@ const Modal = ({ isOpen, onClose }) => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.type !== 'application/pdf') {
-      setErrors('Solo se permiten archivos PDF');
-      setFormData({ ...formData, archivo: null });
-    } else {
+    if (file) {
       setErrors('');
       setFormData({ ...formData, archivo: file });
+      setArchivoNombre(file.name); // Actualiza el nombre del archivo para mostrarlo
+    } else {
+      setErrors('Por favor selecciona un archivo o toma una foto.');
+      setArchivoNombre(''); // Borra el nombre si no es válido
     }
   };
 
@@ -42,7 +46,7 @@ const Modal = ({ isOpen, onClose }) => {
       expediente,
       resguardo,
       caja,
-      archivo
+      archivo,
     } = formData;
 
     if (
@@ -56,7 +60,7 @@ const Modal = ({ isOpen, onClose }) => {
       !caja ||
       !archivo
     ) {
-      setErrors('Favor de llenar todos los campos para realizar el registro.');
+      setErrors('Favor de llenar todos los campos y subir un archivo o tomar una foto.');
       return false;
     }
     return true;
@@ -156,8 +160,24 @@ const Modal = ({ isOpen, onClose }) => {
                 <input type="text" name="caja" value={formData.caja} onChange={handleChange} />
               </div>
               <div className="registro-form-group">
-                <label>Insertar Archivo PDF:</label>
-                <input type="file" name="archivo" onChange={handleFileChange} />
+                <label>Cargar Tu Archivo PDF o Toma una Fotografia:</label>
+                <div className="file-buttons-container">
+                  <div className="file-upload-button">
+                    <label htmlFor="fileUpload">
+                      <FontAwesomeIcon icon={faFileUpload} size="2x" />
+                      Cargar Archivo
+                    </label>
+                    <input
+                      id="fileUpload"
+                      type="file"
+                      accept="application/pdf,image/*"
+                      capture="environment"
+                      style={{ display: 'none' }}
+                      onChange={handleFileChange}
+                    />
+                  </div>
+                </div>
+                {archivoNombre && <p><strong>Archivo seleccionado:</strong> {archivoNombre}</p>}
               </div>
             </div>
             {errors && <p className="registro-error">{errors}</p>}

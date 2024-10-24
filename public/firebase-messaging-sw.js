@@ -1,7 +1,6 @@
-// Importar las bibliotecas necesarias de Firebase
-importScripts("https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js");
-importScripts("https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js");
-
+importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.5.2/workbox-sw.js');
 // Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCJLJPTXJuQj9IVAPIa5jzAZ75FJ7QO8Bw",
@@ -13,35 +12,62 @@ const firebaseConfig = {
   measurementId: "G-F4L287MBG5"
 };
 
-// Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-// Manejar mensajes en segundo plano
-messaging.onBackgroundMessage((payload) => {
-  console.log("Mensaje en segundo plano recibido:", payload);
+// Precaching de Workbox para los archivos generados en build
+if (workbox) {
+  console.log('Workbox cargado correctamente de Firebase');
 
-  const notificationTitle = payload.notification?.title || "Notificación";
+  // Precaching de los archivos que fueron generados en build
+  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+
+  // Estrategia de caché para las rutas importantes de la app
+  workbox.routing.registerRoute(
+    ({ request, url }) => request.mode === 'navigate' && url.pathname.startsWith('/'),
+    new workbox.strategies.NetworkFirst({
+      cacheName: 'pages-cache',
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 50, // Número máximo de rutas a almacenar en caché
+          maxAgeSeconds: 30 * 24 * 60 * 60 // Almacena por 30 días
+        }),
+      ],
+    })
+  );
+  // Estrategia de caché para imágenes
+  workbox.routing.registerRoute(
+    ({ request }) => request.destination === 'image',
+    new workbox.strategies.CacheFirst({
+      cacheName: 'images-cache',
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 50,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 días de caché para imágenes
+        }),
+      ],
+    })
+  );
+} else {
+  console.log('Workbox no pudo cargarse.');
+}
+
+// Manejar notificaciones en segundo plano de Firebase
+messaging.onBackgroundMessage((payload) => {
+  const notificationTitle = payload.notification?.title || 'Nueva notificación';
   const notificationOptions = {
-    body: payload.notification?.body || "Tienes una nueva notificación.",
-    icon: "./SigaLogo.png", // Asegúrate de que la ruta sea válida
+    body: payload.notification?.body || 'Tienes una nueva notificación',
+    icon: './SigaLogo.png',
     data: {
-      url: payload.data?.url || '/' // URL de redirección al hacer clic
+      url: payload.data?.url || '/'
     },
-    actions: [
-      { action: "view", title: "Ver", icon: "./view-icon.png" }
-    ],
-    badge: "./badge-icon.png", // Icono opcional que aparece en la notificación en dispositivos móviles
-    vibrate: [200, 100, 200], // Vibración opcional para dispositivos móviles
   };
 
-  // Mostrar la notificación en segundo plano
   return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
 // Manejar el clic en la notificación
-self.addEventListener('notificationclick', function(event) {
-  console.log("Notificación clickeada:", event);
+self.addEventListener('notificationclick', (event) => {
   event.notification.close();
 
   event.waitUntil(

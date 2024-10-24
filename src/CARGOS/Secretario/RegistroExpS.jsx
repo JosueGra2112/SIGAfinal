@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Modal from './modal'; // Asegúrate de importar el componente Modal desde el archivo correcto
 import expedienteImg from '../IMG/expediente.png';
-import '../css/button.css'
-import '../css/modalAct.css'
+import '../css/button.css';
+import '../css/modalAct.css';
 
 const RegistroExpediente = ({ onSubmit }) => {
   const [showModal, setShowModal] = useState(false);
@@ -15,10 +15,10 @@ const RegistroExpediente = ({ onSubmit }) => {
     <div>
       <button onClick={handleOpenModal} className="register-button">
         <img src={expedienteImg} alt="expediente" className="icon" />
-        Nuevo Registro
+        <span className="button-text">Nuevo Registro</span>
       </button>
 
-      {/* Agregar el componente Modal aquí */}
+      {/* Componente Modal */}
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={onSubmit} />
     </div>
   );

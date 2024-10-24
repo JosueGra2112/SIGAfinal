@@ -18,7 +18,6 @@ const Expedientes = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showSolicitarModal, setShowSolicitarModal] = useState(false);
 
-  // Función para obtener los expedientes desde la API
   const fetchExpedientes = () => {
     fetch('https://sigaemail.host8b.me/expedientes.php')
       .then(response => response.json())
@@ -33,7 +32,6 @@ const Expedientes = () => {
     fetchExpedientes();
   }, []);
 
-  // Función para manejar la búsqueda avanzada
   const handleAdvancedSearchSubmit = (searchCriteria) => {
     const filtered = expedientes.filter(expediente => {
       return (
@@ -45,7 +43,7 @@ const Expedientes = () => {
       );
     });
     setFilteredExpedientes(filtered);
-    setShowModal(false);  // Cerrar el modal después de la búsqueda
+    setShowModal(false);
   };
 
   const handleOpenSolicitarModal = (expediente) => {
@@ -68,20 +66,18 @@ const Expedientes = () => {
         <ExpedienteRe />
         <button onClick={() => setShowModal(true)} className="search-button">
           <img src={buscarImg} alt="buscar" className="icon" />
-          Buscador
+          <span className="button-text">Buscador</span>
         </button>
         <button onClick={handleRefresh} className="refresh-button">
           <img src={refrescarImg} alt="refrescar" className="icon" />
-          Refrescar
+          <span className="button-text">Refrescar</span>
         </button>
       </div>
 
-      {/* Mensaje si no hay resultados */}
       {filteredExpedientes.length === 0 && (
         <p>No se encontraron resultados</p>
       )}
 
-      {/* Vista de tabla en pantallas grandes */}
       <div className="table-container d-none d-lg-block">
         <table className="table">
           <thead>
@@ -111,7 +107,7 @@ const Expedientes = () => {
                 <td>{expediente.Caja}</td>
                 <td>
                   <a href={`https://sigaemail.host8b.me/PDF/${expediente.archivo}`} target="_blank" rel="noopener noreferrer">
-                    <center><img src={pdfimg} style={{ maxWidth: '20px'}} /></center>
+                    <center><img src={pdfimg} style={{ maxWidth: '20px'}} alt="Ver PDF" /></center>
                   </a>
                 </td>
                 <td>
@@ -128,7 +124,6 @@ const Expedientes = () => {
         </table>
       </div>
 
-      {/* Vista responsiva para pantallas móviles */}
       <div className="mobile-list d-lg-none">
         {filteredExpedientes.map(expediente => (
           <div key={expediente.idexp} className="expediente-card">
@@ -157,7 +152,6 @@ const Expedientes = () => {
         ))}
       </div>
 
-      {/* Modales para editar y solicitar */}
       <AdvancedSearchModal isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={handleAdvancedSearchSubmit} />
       <EditModal isOpen={showEditModal} onClose={() => setShowEditModal(false)} expediente={selectedExpediente} />
       <SolicitarModal isOpen={showSolicitarModal} onClose={() => setShowSolicitarModal(false)} expediente={selectedExpediente} />

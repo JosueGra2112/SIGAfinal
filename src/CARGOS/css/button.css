@@ -75,3 +75,41 @@
     margin-right: 10px; /* Espacio entre el icono y el texto */
   }
   
+  /* Estilos generales para el botón de nuevo registro */
+.register-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4CAF50; /* Color verde para el botón */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.register-button .icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.register-button:hover {
+  background-color: #45a049; /* Un poco más oscuro en hover */
+}
+
+.button-text {
+  display: inline;
+}
+
+/* Para pantallas pequeñas, solo mostrar el icono */
+@media (max-width: 768px) {
+  .button-text {
+    display: none;
+  }
+
+  .icon {
+    margin-right: 0;
+  }
+}
