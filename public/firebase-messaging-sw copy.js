@@ -20,19 +20,22 @@ const messaging = firebase.messaging();
 if (typeof workbox !== 'undefined') {
   console.log('Workbox cargado correctamente.');
 
-  // Inyección del manifiesto
-  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
+  // Precaching de los archivos generados en build (como index.html, main.js, main.css)
+  if (self.__WB_MANIFEST && Array.isArray(self.__WB_MANIFEST)) {
+    workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+  } else {
+    console.error('Error: __WB_MANIFEST no está disponible o no es un array.');
+  }
 
   // Forzar la instalación y activación del Service Worker
   self.addEventListener('install', (event) => {
     console.log('Service Worker instalando y forzando cacheado...');
-    self.skipWaiting();
+    self.skipWaiting(); // Fuerza que el nuevo Service Worker se active de inmediato
   });
-
 
   self.addEventListener('activate', (event) => {
     console.log('Service Worker activado.');
-    event.waitUntil(self.clients.claim());
+    event.waitUntil(self.clients.claim()); // Forzar a que el nuevo SW controle todas las páginas inmediatamente
   });
 
   // Cache de rutas específicas (Login, Inicio, AcercaDe)
@@ -96,7 +99,7 @@ if (typeof workbox !== 'undefined') {
     event.respondWith(
       caches.match(event.request).then((response) => {
         if (response) {
-          return response;
+          return response; // Retorna del caché si está disponible
         }
         return fetch(event.request).then((networkResponse) => {
           if (networkResponse && networkResponse.ok) {
@@ -107,7 +110,7 @@ if (typeof workbox !== 'undefined') {
           return networkResponse;
         });
       }).catch(() => {
-        return caches.match('/offline.html');
+        return caches.match('/offline.html'); // Página offline como fallback
       })
     );
   });

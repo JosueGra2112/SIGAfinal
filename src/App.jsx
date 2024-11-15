@@ -102,7 +102,6 @@ const App = () => {
     <body>
       <Router>
         <NotificationHandler />
-        <ErrorHandler />
         <SessionTimeoutHandler timeoutDuration={TIMEOUT_DURATION} />
         <Helmet>
           <meta http-equiv="Content-Security-Policy" content="
